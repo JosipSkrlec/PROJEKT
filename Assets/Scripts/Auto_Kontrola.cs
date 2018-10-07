@@ -4,11 +4,17 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Auto_Kontrola : MonoBehaviour {
+public class Auto_Kontrola : MonoBehaviour
+{
+    // TIPS
+    // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 6;
+
 
     #region Public varijable
     public Text Brzinomjer;
     public Text Odbrojavanje;
+    public Text FramesPerSecond;
+    public RawImage GorivoSlika;
     #endregion
 
     #region Ostale Varijable
@@ -17,52 +23,99 @@ public class Auto_Kontrola : MonoBehaviour {
     float MaxBrzina = 0.0f;
     float Ubrzanje = 0.0f;
     float odbrojavanjevremena = 0.0f;
+    float odbrojavanjeVremenaZaGorivo = 0.0f;
 
     int provjerabrojaca = 0;
+
+    bool Triggerzagorivojednom = true;
+
+    // ZA FPS
+    public float updateRateSeconds = 4.0f;
+    int frameCount = 0;
+    float dt = 0.0f;
+    float fps = 0.0f;
     #endregion
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
-       GLOBALNE.NajvecaBrzinaAuta = 10.0f;
-       GLOBALNE.Ubrzanje = 4.0f;
+        GLOBALNE.NajvecaBrzinaAuta = 30.0f;
+        GLOBALNE.Ubrzanje = 4.0f;
+        GLOBALNE.MaxGoriva = 1.82f;
+        GLOBALNE.GORIVO = 6;
 
-       MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
-       Ubrzanje = GLOBALNE.Ubrzanje;
+        GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
+
+        MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
+        Ubrzanje = GLOBALNE.Ubrzanje;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    // Update is called once per frame
+    void Update()
+    {
+        Fps();
         if (provjerabrojaca != 5)
         {
             OdbrojavanjeVremena();
 
         }
-        else
+        else if(GLOBALNE.GORIVO != 0)
         {
 
-        // if kontrola za skretanje u lijevo
-        if (Input.GetKey(KeyCode.A))
+            // if kontrola za skretanje u lijevo
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+            }
+            // if kontrola za skretanje u desno
+            else if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+            }
+
+            // pretvorba float u int i ispis na ekran brzinu
+            int temp = (int)TrenutnaBrzina;
+            Brzinomjer.text = temp / 2 + " km/h";
+
+            Ubrzaj();
+
+            odbrojavanjeVremenaZaGorivo += Time.deltaTime;
+
+            //Debug.Log(odbrojavanjeVremena1);
+
+            if (odbrojavanjeVremenaZaGorivo > 6 )
+            {
+                SmanjiGorivo();
+                if (odbrojavanjeVremenaZaGorivo > 6)
+                {
+                    odbrojavanjeVremenaZaGorivo = 1;
+                    Triggerzagorivojednom = true;
+                }
+
+            }
+
+        }
+        else if (GLOBALNE.GORIVO == 0)
         {
-            transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+            // TODO
+            // BACI ZAVRSNI SCREEN S BROJEM COINSA
         }
-        // if kontrola za skretanje u desno
-        else if (Input.GetKey(KeyCode.D))
+    }
+
+    void Fps()
+    {
+        frameCount++;
+        dt += Time.unscaledDeltaTime;
+        if (dt > 1.0 / updateRateSeconds)
         {
-            transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+            fps = frameCount / dt;
+            frameCount = 0;
+            dt -= 1.0F / updateRateSeconds;
+            
         }
-
-        // pretvorba float u int i ispis na ekran brzinu
-        int temp = (int)TrenutnaBrzina;
-        Brzinomjer.text = temp / 2 + " km/h";
-
-        Ubrzaj();
-        
-
-        }
-
+        FramesPerSecond.text = "Fps/" + System.Math.Round(fps, 1).ToString("0");
     }
 
     void Ubrzaj()
@@ -95,15 +148,42 @@ public class Auto_Kontrola : MonoBehaviour {
         }
         if (provjerabrojaca > 3)
         {
-            Odbrojavanje.text = "DRIVE!";         
+            Odbrojavanje.text = "DRIVE!";
         }
         if (provjerabrojaca > 4)
         {
             provjerabrojaca = 5;
             Odbrojavanje.GetComponent<Text>().enabled = false;
         }
-        
+
+    }
+
+    void SmanjiGorivo()
+    {
+        //y =0.79768
+        //z =1
+        if (Triggerzagorivojednom == true)
+        {
+            if (GorivoSlika.enabled == false)
+            {
+                GorivoSlika.enabled = true;
+            }
+
+            GLOBALNE.GORIVO -= 1;
+            GLOBALNE.TrenutnoGorivo = GLOBALNE.TrenutnoGorivo - 0.3f;
+            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.79768f, 1);
+
+            Triggerzagorivojednom = false;
+
+        }
+
     }
 
 
+
+
+
+
+
 }
+

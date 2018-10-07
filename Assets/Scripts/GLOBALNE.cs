@@ -7,10 +7,16 @@ public class GLOBALNE : MonoBehaviour
     // ZA SAVE
     public static float NajvecaBrzinaAuta;
     public static float Ubrzanje;
+    public static float MaxGoriva;
+
     public static int BrojSvihNovcica;
+
 
     // temp u igri
     public static int BrojNovcicaTrenutno1;
+    public static float TrenutnoGorivo;
+
+    public static int GORIVO;
 
 
 
