@@ -6,21 +6,25 @@ using UnityEngine.UI;
 
 public class Auto_Kontrola : MonoBehaviour {
 
+    #region Public varijable
     public Text Brzinomjer;
     public Text Odbrojavanje;
+    #endregion
+
+    #region Ostale Varijable
+    private float TrenutnaBrzina = 0.0f;
 
     float MaxBrzina = 0.0f;
-    private float TrenutnaBrzina = 0.0f;
     float Ubrzanje = 0.0f;
-    float temp = 0.0f;
+    float odbrojavanjevremena = 0.0f;
+
     int provjerabrojaca = 0;
-
-
+    #endregion
 
     // Use this for initialization
     void Start () {
 
-       GLOBALNE.NajvecaBrzinaAuta = 100.0f;
+       GLOBALNE.NajvecaBrzinaAuta = 10.0f;
        GLOBALNE.Ubrzanje = 4.0f;
 
        MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
@@ -34,6 +38,7 @@ public class Auto_Kontrola : MonoBehaviour {
         if (provjerabrojaca != 5)
         {
             OdbrojavanjeVremena();
+
         }
         else
         {
@@ -51,9 +56,11 @@ public class Auto_Kontrola : MonoBehaviour {
 
         // pretvorba float u int i ispis na ekran brzinu
         int temp = (int)TrenutnaBrzina;
-        Brzinomjer.text = temp + " km/h";
+        Brzinomjer.text = temp / 2 + " km/h";
 
         Ubrzaj();
+        
+
         }
 
     }
@@ -74,9 +81,9 @@ public class Auto_Kontrola : MonoBehaviour {
 
     void OdbrojavanjeVremena()
     {
-        temp += Time.deltaTime;
+        odbrojavanjevremena += Time.deltaTime;
 
-        provjerabrojaca = (int)temp;
+        provjerabrojaca = (int)odbrojavanjevremena;
 
         if (provjerabrojaca > 1)
         {
@@ -88,7 +95,7 @@ public class Auto_Kontrola : MonoBehaviour {
         }
         if (provjerabrojaca > 3)
         {
-            Odbrojavanje.text = "GOGO";         
+            Odbrojavanje.text = "DRIVE!";         
         }
         if (provjerabrojaca > 4)
         {
@@ -97,7 +104,6 @@ public class Auto_Kontrola : MonoBehaviour {
         }
         
     }
-
 
 
 }
