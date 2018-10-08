@@ -8,6 +8,7 @@ public class GLOBALNE : MonoBehaviour
     public static float NajvecaBrzinaAuta;
     public static float Ubrzanje;
     public static float MaxGoriva;
+    public static float TrenutnoSkretanje;
 
     public static int BrojSvihNovcica;
 
@@ -15,6 +16,7 @@ public class GLOBALNE : MonoBehaviour
     // temp u igri
     public static int BrojNovcicaTrenutno1;
     public static float TrenutnoGorivo;
+    public static float TrenutnaBrzina;
 
     public static int GORIVO;
 

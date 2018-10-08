@@ -8,6 +8,7 @@ public class Auto_Kontrola : MonoBehaviour
 {
     // TIPS
     // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 110;
+    // skretanje auta , normal je 0.8f 
 
 
     #region Public varijable
@@ -19,7 +20,7 @@ public class Auto_Kontrola : MonoBehaviour
     #endregion
 
     #region Ostale Varijable
-    private float TrenutnaBrzina = 0.0f;
+    //private float TrenutnaBrzina = 0.0f;
 
     float MaxBrzina = 0.0f;
     float Ubrzanje = 0.0f;
@@ -46,6 +47,7 @@ public class Auto_Kontrola : MonoBehaviour
         GLOBALNE.Ubrzanje = 4.0f;
         GLOBALNE.MaxGoriva = 2.0f;
         GLOBALNE.GORIVO = 100;
+        GLOBALNE.TrenutnoSkretanje = 0.8f;
         GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
 
         PostotakGoriva.text = "100 %";
@@ -70,16 +72,16 @@ public class Auto_Kontrola : MonoBehaviour
             // if kontrola za skretanje u lijevo
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 1.5f, 0.0f, Space.World);
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
             }
             // if kontrola za skretanje u desno
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 1.5f, 0.0f, Space.World);
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
             }
 
             // pretvorba float u int i ispis na ekran brzinu
-            int temp = (int)TrenutnaBrzina;
+            int temp = (int)GLOBALNE.TrenutnaBrzina;
             Brzinomjer.text = temp  + " km/h";
 
             Ubrzaj();
@@ -124,13 +126,13 @@ public class Auto_Kontrola : MonoBehaviour
     void Ubrzaj()
     {
         // pomakni auto u smjeru 0,-Y,0.. -y jer je objekt okrenut u tom polozaju
-        transform.Translate(0.0f, -TrenutnaBrzina * Time.deltaTime, 0.0f);
+        transform.Translate(0.0f, -GLOBALNE.TrenutnaBrzina * Time.deltaTime, 0.0f);
 
-        TrenutnaBrzina += Ubrzanje * Time.deltaTime * 2;
+        GLOBALNE.TrenutnaBrzina += Ubrzanje * Time.deltaTime * 2;
 
-        if (TrenutnaBrzina > MaxBrzina)
+        if (GLOBALNE.TrenutnaBrzina > MaxBrzina)
         {
-            TrenutnaBrzina = MaxBrzina;
+            GLOBALNE.TrenutnaBrzina = MaxBrzina;
         }
         //Debug.Log("Brzina" + TrenutnaBrzina);
     }
