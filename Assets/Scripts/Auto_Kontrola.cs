@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class Auto_Kontrola : MonoBehaviour
 {
     // TIPS
-    // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 6;
+    // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 110;
 
 
     #region Public varijable
     public Text Brzinomjer;
     public Text Odbrojavanje;
     public Text FramesPerSecond;
+    public Text PostotakGoriva;
     public RawImage GorivoSlika;
     #endregion
 
@@ -24,6 +25,7 @@ public class Auto_Kontrola : MonoBehaviour
     float Ubrzanje = 0.0f;
     float odbrojavanjevremena = 0.0f;
     float odbrojavanjeVremenaZaGorivo = 0.0f;
+
 
     int provjerabrojaca = 0;
 
@@ -42,10 +44,11 @@ public class Auto_Kontrola : MonoBehaviour
 
         GLOBALNE.NajvecaBrzinaAuta = 30.0f;
         GLOBALNE.Ubrzanje = 4.0f;
-        GLOBALNE.MaxGoriva = 1.82f;
-        GLOBALNE.GORIVO = 6;
-
+        GLOBALNE.MaxGoriva = 2.0f;
+        GLOBALNE.GORIVO = 100;
         GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
+
+        PostotakGoriva.text = "100 %";
 
         MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
         Ubrzanje = GLOBALNE.Ubrzanje;
@@ -67,17 +70,17 @@ public class Auto_Kontrola : MonoBehaviour
             // if kontrola za skretanje u lijevo
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 1.5f, 0.0f, Space.World);
             }
             // if kontrola za skretanje u desno
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f, Space.World);
+                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 1.5f, 0.0f, Space.World);
             }
 
             // pretvorba float u int i ispis na ekran brzinu
             int temp = (int)TrenutnaBrzina;
-            Brzinomjer.text = temp / 2 + " km/h";
+            Brzinomjer.text = temp  + " km/h";
 
             Ubrzaj();
 
@@ -85,10 +88,10 @@ public class Auto_Kontrola : MonoBehaviour
 
             //Debug.Log(odbrojavanjeVremena1);
 
-            if (odbrojavanjeVremenaZaGorivo > 6 )
+            if (odbrojavanjeVremenaZaGorivo > 3 )
             {
                 SmanjiGorivo();
-                if (odbrojavanjeVremenaZaGorivo > 6)
+                if (odbrojavanjeVremenaZaGorivo > 3)
                 {
                     odbrojavanjeVremenaZaGorivo = 1;
                     Triggerzagorivojednom = true;
@@ -167,11 +170,20 @@ public class Auto_Kontrola : MonoBehaviour
             if (GorivoSlika.enabled == false)
             {
                 GorivoSlika.enabled = true;
-            }
+            }  
 
-            GLOBALNE.GORIVO -= 1;
-            GLOBALNE.TrenutnoGorivo = GLOBALNE.TrenutnoGorivo - 0.3f;
-            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.79768f, 1);
+
+            GLOBALNE.TrenutnoGorivo = GLOBALNE.TrenutnoGorivo - 0.2f;
+
+
+            int temp = 0;
+            temp = GLOBALNE.GORIVO - 10;
+            GLOBALNE.GORIVO = temp;
+
+            PostotakGoriva.text = temp + " %";
+         
+
+            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
 
             Triggerzagorivojednom = false;
 

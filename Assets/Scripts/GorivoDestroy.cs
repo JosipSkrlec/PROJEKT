@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GorivoDestroy : MonoBehaviour {
    
     public GameObject GorivoZaDestroy;
+    public Text PostotakGoriva;
     public RawImage GorivoSlika;
 
     // Use this for initialization
@@ -26,9 +27,12 @@ public class GorivoDestroy : MonoBehaviour {
         if (other.gameObject.name == "Auto")
         {
 
-            GLOBALNE.TrenutnoGorivo = 1.82f;
-            GLOBALNE.GORIVO = 6;
-            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.79768f, 1);
+            GLOBALNE.TrenutnoGorivo = 2.0f;
+            GLOBALNE.GORIVO = 100;
+            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+
+            PostotakGoriva.text = GLOBALNE.GORIVO + " %";
+
 
             Destroy(GorivoZaDestroy);
 
