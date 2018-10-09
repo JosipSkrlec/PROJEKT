@@ -9,10 +9,10 @@ public class CoinDestroy : MonoBehaviour {
     public GameObject CoinZaDestroy;
     public Text BrojNovcicaPrikaz;
 
+
     // Use this for initialization
     void Start () {
-		
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +27,11 @@ public class CoinDestroy : MonoBehaviour {
             GLOBALNE.BrojNovcicaTrenutno1 += 1;
             BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno1.ToString();
 
+            //CoinZaDestroy.GetComponent<MeshRenderer>().enabled = false;
+
             Destroy(CoinZaDestroy);
+   
+
         }
 
 

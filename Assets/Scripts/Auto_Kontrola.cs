@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class Auto_Kontrola : MonoBehaviour
 {
     // TIPS
+    // Objekt Auto se ne smije Destroy-ati
     // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 110;
     // skretanje auta , normal je 0.8f 
+    //
 
 
     #region Public varijable
@@ -20,15 +22,15 @@ public class Auto_Kontrola : MonoBehaviour
     #endregion
 
     #region Ostale Varijable
-    //private float TrenutnaBrzina = 0.0f;
-
+    // trenutne varijable u koje se stavlja vrijednost iz GLOBALNE
     float MaxBrzina = 0.0f;
     float Ubrzanje = 0.0f;
-    float odbrojavanjevremena = 0.0f;
     float odbrojavanjeVremenaZaGorivo = 0.0f;
 
+    // trenutne ostale varijable
+    int provjerabrojacaZaPocetakIgre = 0;
 
-    int provjerabrojaca = 0;
+    float odbrojavanjevremenaZaPocetakIgre = 0.0f;
 
     bool Triggerzagorivojednom = true;
 
@@ -37,18 +39,22 @@ public class Auto_Kontrola : MonoBehaviour
     int frameCount = 0;
     float dt = 0.0f;
     float fps = 0.0f;
+
+    // Zvuk
+
     #endregion
 
     // Use this for initialization
     void Start()
     {
-
+        // TODO - metoda init koja ce citati iz datoteke byte i pretvarati u vrijednosti i stavljati u globalne varijable
         GLOBALNE.NajvecaBrzinaAuta = 30.0f;
-        GLOBALNE.Ubrzanje = 4.0f;
+        GLOBALNE.Ubrzanje = 2.0f;
         GLOBALNE.MaxGoriva = 2.0f;
-        GLOBALNE.GORIVO = 100;
-        GLOBALNE.TrenutnoSkretanje = 0.8f;
         GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
+        GLOBALNE.GORIVO = 100;
+
+        GLOBALNE.TrenutnoSkretanje = 0.8f;
 
         PostotakGoriva.text = "100 %";
 
@@ -60,21 +66,20 @@ public class Auto_Kontrola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Fps();
-        if (provjerabrojaca != 5)
+        FPS();
+
+        // provjera brojaca je counter koji odbrojava do 5 sekundi od startup-a jer metoda i kontrole za skretanje se pozivaju u else if kada brojac
+        if (provjerabrojacaZaPocetakIgre != 5)
         {
             OdbrojavanjeVremena();
-
         }
         else if(GLOBALNE.GORIVO != 0)
         {
-
-            // if kontrola za skretanje u lijevo
+            // if else za skretanje u lijevo i desno A=lijevo, D=desno
             if (Input.GetKey(KeyCode.A))
             {
                 transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
             }
-            // if kontrola za skretanje u desno
             else if (Input.GetKey(KeyCode.D))
             {
                 transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
@@ -84,7 +89,7 @@ public class Auto_Kontrola : MonoBehaviour
             int temp = (int)GLOBALNE.TrenutnaBrzina;
             Brzinomjer.text = temp  + " km/h";
 
-            Ubrzaj();
+            UbrzajAuto();
 
             odbrojavanjeVremenaZaGorivo += Time.deltaTime;
 
@@ -104,12 +109,20 @@ public class Auto_Kontrola : MonoBehaviour
         }
         else if (GLOBALNE.GORIVO == 0)
         {
-            // TODO
-            // BACI ZAVRSNI SCREEN S BROJEM COINSA
+            // TODO -1.OPCIJA ZA NASTAVAK IGRE, 2.BACI ZAVRSNI SCREEN S BROJEM COINSA
+
+
+
+
+
+
         }
     }
 
-    void Fps()
+    /// <summary>
+    /// Metoda FPS(), prikazuje trenutne framove po sekundi.
+    /// </summary>
+    void FPS()
     {
         frameCount++;
         dt += Time.unscaledDeltaTime;
@@ -123,7 +136,10 @@ public class Auto_Kontrola : MonoBehaviour
         FramesPerSecond.text = "Fps/" + System.Math.Round(fps, 1).ToString("0");
     }
 
-    void Ubrzaj()
+    /// <summary>
+    /// Metoda UbrzajAuto(), Ubrzava Auto u smjeru kordinate Y za vrijednost GLOBALNE.TrenutnaBrzina.
+    /// </summary>
+    void UbrzajAuto()
     {
         // pomakni auto u smjeru 0,-Y,0.. -y jer je objekt okrenut u tom polozaju
         transform.Translate(0.0f, -GLOBALNE.TrenutnaBrzina * Time.deltaTime, 0.0f);
@@ -137,46 +153,52 @@ public class Auto_Kontrola : MonoBehaviour
         //Debug.Log("Brzina" + TrenutnaBrzina);
     }
 
+    /// <summary>
+    /// Metoda OdbrojavanjeVremena(), broji do 5 te prikazuje u UI Text vrijeme do pocetka igre.
+    /// </summary>
     void OdbrojavanjeVremena()
     {
-        odbrojavanjevremena += Time.deltaTime;
+        odbrojavanjevremenaZaPocetakIgre += Time.deltaTime;
 
-        provjerabrojaca = (int)odbrojavanjevremena;
+        provjerabrojacaZaPocetakIgre = (int)odbrojavanjevremenaZaPocetakIgre;
 
-        if (provjerabrojaca > 1)
+        if (provjerabrojacaZaPocetakIgre > 1)
         {
             Odbrojavanje.text = "2";
         }
-        if (provjerabrojaca > 2)
+        if (provjerabrojacaZaPocetakIgre > 2)
         {
             Odbrojavanje.text = "1";
         }
-        if (provjerabrojaca > 3)
+        if (provjerabrojacaZaPocetakIgre > 3)
         {
             Odbrojavanje.text = "DRIVE!";
         }
-        if (provjerabrojaca > 4)
+        if (provjerabrojacaZaPocetakIgre > 4)
         {
-            provjerabrojaca = 5;
+            provjerabrojacaZaPocetakIgre = 5;
             Odbrojavanje.GetComponent<Text>().enabled = false;
         }
 
     }
 
+    /// <summary>
+    /// Metoda SmanjiGorivo(), skalira sliku ZeleniBar za svakih odbrojavanjeVremenaZaGorivo sekundi (3) za vrijednost GLOBALNE.TrenutnoGorivo (-0.2f).
+    /// </summary>
     void SmanjiGorivo()
     {
         //y =0.79768
         //z =1
         if (Triggerzagorivojednom == true)
         {
+            // prikaz GorivoSlika ukoliko je false a false je po default-u
             if (GorivoSlika.enabled == false)
             {
                 GorivoSlika.enabled = true;
             }  
 
-
+            // za scale
             GLOBALNE.TrenutnoGorivo = GLOBALNE.TrenutnoGorivo - 0.2f;
-
 
             int temp = 0;
             temp = GLOBALNE.GORIVO - 10;
@@ -192,10 +214,6 @@ public class Auto_Kontrola : MonoBehaviour
         }
 
     }
-
-
-
-
 
 
 
