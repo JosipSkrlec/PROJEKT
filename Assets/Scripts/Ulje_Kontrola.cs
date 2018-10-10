@@ -24,10 +24,20 @@ public class Ulje_Kontrola : MonoBehaviour {
         if (other.gameObject.name == "Auto")
         {
            GLOBALNE.TrenutnaBrzina = 0.1f;
+           GLOBALNE.TrenutnoSkretanje = 0.1f;
 
         }
 
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Auto")
+        {
+            GLOBALNE.TrenutnoSkretanje = 0.6f;
+
+        }
     }
 
 

@@ -17,13 +17,16 @@ public class GLOBALNE : MonoBehaviour
 
 
     // temp u igri
+    public static bool NastaviIgrati = true;
+    public static bool PrikaziPanelZaNastavakIgreJednom = true;
+
     public static float TrenutnoSkretanje;
     public static float TrenutnoGorivo;
     public static float TrenutnaBrzina;
     public static float MaxGoriva;
 
     public static int GORIVO;
-    public static int BrojNovcicaTrenutno1;
+    public static int BrojNovcicaTrenutno;
 
 
 

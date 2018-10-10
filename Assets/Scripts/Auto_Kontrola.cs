@@ -9,16 +9,17 @@ public class Auto_Kontrola : MonoBehaviour
     // TIPS
     // Objekt Auto se ne smije Destroy-ati
     // Auto stane kada je GLOBALNE.GORIVO = 0; a full je GLOBALNE.GORIVO = 110;
-    // skretanje auta , normal je 0.8f 
+    // skretanje auta , normal je 0.6f 
     //
 
-
+        // TODO - distance counter, napraviti counter distance
     #region Public varijable
     public Text Brzinomjer;
     public Text Odbrojavanje;
     public Text FramesPerSecond;
     public Text PostotakGoriva;
-    public RawImage GorivoSlika;
+    public RawImage ZelenoGorivoSlika;
+    public GameObject PanelZaNastavakIgre;
     #endregion
 
     #region Ostale Varijable
@@ -47,14 +48,14 @@ public class Auto_Kontrola : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PanelZaNastavakIgre.SetActive(false);
         // TODO - metoda init koja ce citati iz datoteke byte i pretvarati u vrijednosti i stavljati u globalne varijable
         GLOBALNE.NajvecaBrzinaAuta = 30.0f;
         GLOBALNE.Ubrzanje = 2.0f;
         GLOBALNE.MaxGoriva = 2.0f;
         GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
         GLOBALNE.GORIVO = 100;
-
-        GLOBALNE.TrenutnoSkretanje = 0.8f;
+        GLOBALNE.TrenutnoSkretanje = 0.6f;
 
         PostotakGoriva.text = "100 %";
 
@@ -73,7 +74,8 @@ public class Auto_Kontrola : MonoBehaviour
         {
             OdbrojavanjeVremena();
         }
-        else if(GLOBALNE.GORIVO != 0)
+        // ako je GLOBALNE.GORIVO = 0 tada Auto stane!
+        else if(GLOBALNE.GORIVO != 0 && GLOBALNE.NastaviIgrati == true)
         {
             // if else za skretanje u lijevo i desno A=lijevo, D=desno
             if (Input.GetKey(KeyCode.A))
@@ -94,7 +96,12 @@ public class Auto_Kontrola : MonoBehaviour
             odbrojavanjeVremenaZaGorivo += Time.deltaTime;
 
             //Debug.Log(odbrojavanjeVremena1);
-
+            #region Opis zasto su 2 if-a
+            // prvi if je za provjeru vremena, ako prode zadano vrijeme ulazi u if i zove metodu smanji gorivo
+            // drugi if je da provjeri da li je broj veci od zadanog vremena, ukoliko je seta trigger u true
+            // dok metoda smanjigorivo seta isti trigger u false , jer time.deltatime je u float i pozvao bi metodu
+            // vise puta jer se update u 1 sekundi poziva vise puta od jednom!
+            #endregion
             if (odbrojavanjeVremenaZaGorivo > 3 )
             {
                 SmanjiGorivo();
@@ -109,7 +116,11 @@ public class Auto_Kontrola : MonoBehaviour
         }
         else if (GLOBALNE.GORIVO == 0)
         {
-            // TODO -1.OPCIJA ZA NASTAVAK IGRE, 2.BACI ZAVRSNI SCREEN S BROJEM COINSA
+
+            GLOBALNE.NastaviIgrati = false;
+            PanelZaNastavakIgre.SetActive(true);
+
+            // TODO - 2.BACI ZAVRSNI SCREEN S BROJEM COINSA - kontrola sa public static bool PrikaziPanelZaNastavakIgreJednom = true; 
 
 
 
@@ -117,6 +128,8 @@ public class Auto_Kontrola : MonoBehaviour
 
 
         }
+
+
     }
 
     /// <summary>
@@ -192,9 +205,9 @@ public class Auto_Kontrola : MonoBehaviour
         if (Triggerzagorivojednom == true)
         {
             // prikaz GorivoSlika ukoliko je false a false je po default-u
-            if (GorivoSlika.enabled == false)
+            if (ZelenoGorivoSlika.enabled == false)
             {
-                GorivoSlika.enabled = true;
+                ZelenoGorivoSlika.enabled = true;
             }  
 
             // za scale
@@ -205,9 +218,9 @@ public class Auto_Kontrola : MonoBehaviour
             GLOBALNE.GORIVO = temp;
 
             PostotakGoriva.text = temp + " %";
-         
 
-            GorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+
+            ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
 
             Triggerzagorivojednom = false;
 

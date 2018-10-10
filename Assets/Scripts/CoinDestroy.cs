@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CoinDestroy : MonoBehaviour {
 
-
     public GameObject CoinZaDestroy;
     public Text BrojNovcicaPrikaz;
 
@@ -24,8 +23,8 @@ public class CoinDestroy : MonoBehaviour {
 
         if (other.gameObject.name == "Auto")
         {
-            GLOBALNE.BrojNovcicaTrenutno1 += 1;
-            BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno1.ToString();
+            GLOBALNE.BrojNovcicaTrenutno += 1;
+            BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
 
             //CoinZaDestroy.GetComponent<MeshRenderer>().enabled = false;
 

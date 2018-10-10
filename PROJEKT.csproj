@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\GLOBALNE.cs" />
     <Compile Include="Assets\Scripts\GorivoDestroy.cs" />
+    <Compile Include="Assets\Scripts\KontrolaZaNastavakIgre.cs" />
     <Compile Include="Assets\Scripts\Ulje_Kontrola.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
