@@ -12,22 +12,32 @@ public class GLOBALNE : MonoBehaviour
     // ZA SAVE
     public static float NajvecaBrzinaAuta;
     public static float Ubrzanje;
+    public static float Usporavanje;
 
+    public static int TurboTime;
+    // scale slika za gorivo
+    public static float OduzimanjeScaleSlika;
+    public static int OduzimanjeOdSto;
     public static int BrojSvihNovcica;
 
 
     // temp u igri
     public static bool NastaviIgrati = true;
     public static bool PrikaziPanelZaNastavakIgreJednom = true;
+    
+    public static bool UgasiPanelZaNastavakIgre = true;
 
     public static float TrenutnoSkretanje;
     public static float TrenutnoGorivo;
     public static float TrenutnaBrzina;
     public static float MaxGoriva;
+    public static int MaxTurbo = 100;
 
     public static int GORIVO;
+    public static int TURBO;
     public static int BrojNovcicaTrenutno;
-
-
-
+    public static int BrojPrijedenihMetara;
 }
+
+
+

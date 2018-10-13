@@ -22,7 +22,6 @@ E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_bin\Debug\UnityEngine.Analytics.xml
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_bin\Debug\UnityEngine.HoloLens.xml
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_bin\Debug\UnityEngine.VR.xml
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_bin\Debug\UnityEditor.xml
-E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_obj\Debug\PROJEKT.csprojAssemblyReference.cache
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_obj\Debug\PROJEKT.csproj.CoreCompileInputs.cache
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_obj\Debug\PROJEKT.csproj.CopyComplete
 E:\UNITY PROJEKTI\PROJEKT\Temp\UnityVS_obj\Debug\Assembly-CSharp.dll

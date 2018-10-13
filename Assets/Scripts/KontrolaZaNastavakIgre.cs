@@ -8,14 +8,22 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
     // button opcije za nastavak igre (payment)
     public Button PrvaOpcijaPedesetPostoGoriva;
     public Button DrugaOpcijastoPostoGoriva;
+    public Button NaZavrsniPanel;
     // ovo je cijeli panel u kojem su smjesteni UI elementi
     public GameObject PanelZaNastavakIgre;
+    // ovo je zavrsni panel koji prikazuje broj trenutno osvojenih novcica broj trenutnih i ostalo
+    public GameObject PanelZavrsni;
     //public RawImage ZelenoGorivoSlika;
     public RawImage ZelenoGorivoSlika;
     // Text u kojem pise postotak goriva 50 ili 100% nakon kupovine
     public Text PostotakGoriva;
     // Text u kojem se prikazuju broj trenutnih novcica
     public Text BrojNovcicaPrikaz;
+
+    private void Start()
+    {
+        PanelZavrsni.SetActive(false);
+    }
 
     // ovo je scale od zelene slike
     protected const float PrvaOpcija =1.0f;
@@ -68,14 +76,14 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
 
     }
 
+    public void BaciNaZavrsni()
+    {
+        
 
-    // TODO - napraviti metodu EXIT koja sa panela baca na panel koji prikazuje trenutne coins-e osvojene na mapi
-    // U metodi Exit mora se pozvati funkcija SAVE koja ce spremiti svo trenutno stanje (update,brojnovcica i ostalo!)
-
-
-
-
-
+        PanelZavrsni.SetActive(true);
+        GLOBALNE.UgasiPanelZaNastavakIgre = false;
+        PanelZaNastavakIgre.SetActive(false);
+    }
 
 
 }
