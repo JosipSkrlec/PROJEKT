@@ -19,10 +19,35 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
     public Text PostotakGoriva;
     // Text u kojem se prikazuju broj trenutnih novcica
     public Text BrojNovcicaPrikaz;
+    // za text jezik
+    public Text NaslovPanela;
+    public Text OpisPanela;
+    public Text pedeset;
+    public Text sto;
+    public Text Izlazizpanelanazavrsni;
+
 
     private void Start()
     {
         PanelZavrsni.SetActive(false);
+        if (GLOBALNE.EngHrv == true)
+        {
+            NaslovPanela.text = Croatian.Naslovpanela1;
+            OpisPanela.text = Croatian.OpisPanela1;
+            pedeset.text = Croatian.pedeset;
+            sto.text = Croatian.sto;
+            Izlazizpanelanazavrsni.text = Croatian.Izlaz1;
+        }
+        else if (GLOBALNE.EngHrv == false)
+        {
+            NaslovPanela.text = English.Naslovpanela1;
+            OpisPanela.text = English.OpisPanela1;
+            pedeset.text = English.pedeset;
+            sto.text = English.sto;
+            Izlazizpanelanazavrsni.text = English.Izlaz1;
+        }
+
+
     }
 
     // ovo je scale od zelene slike

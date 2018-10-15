@@ -20,6 +20,7 @@ public class Auto_Kontrola : MonoBehaviour
     public Text FramesPerSecond;
     public Text PostotakGoriva;
     public Text PrijedenoMetara;
+    public Text prijedenoText;
     public RawImage ZelenoGorivoSlika;
     public RawImage PlaviTurboSlika;
     public GameObject PanelZaNastavakIgre;
@@ -75,6 +76,15 @@ public class Auto_Kontrola : MonoBehaviour
         PanelZaNastavakIgre.SetActive(false);
         FullTurbo.enabled = false;
         Svjetla.SetActive(false);
+
+        if (GLOBALNE.EngHrv == true)
+        {
+            prijedenoText.text = Croatian.prijedenokilometara;
+        }
+        else if (GLOBALNE.EngHrv == false)
+        {
+            prijedenoText.text = English.prijedenokilometara;
+        }
 
         DanNoc();
 
@@ -137,8 +147,9 @@ public class Auto_Kontrola : MonoBehaviour
             {
                 if (samojednomTurbo == true)
                 {
-                    TurboTemp2 = MaxBrzina + 30;
-                    TurboTemp1 = TrenutnaBrzinaAuta + 30;
+                    TurboTemp1 = TrenutnaBrzinaAuta + 15;
+                    TurboTemp2 = MaxBrzina + 15;
+                    GLOBALNE.TrenutnaBrzina = TurboTemp2;
                 }
 
                 MaxBrzina = TurboTemp2;
@@ -267,13 +278,13 @@ public class Auto_Kontrola : MonoBehaviour
         // NOC
         if (temp1 == 1)
         {
-            Debug.Log("1");
+            //Debug.Log("1");
             DanNocsvjetlo.GetComponent<Light>().color = new Color(0,0,0,250);
         }
         // DAN
         if (temp1 == 2)
         {
-            Debug.Log("2");
+            //Debug.Log("2");
             DanNocsvjetlo.GetComponent<Light>().color = new Color(1, 1, 1, 1);
         }
 
@@ -350,7 +361,14 @@ public class Auto_Kontrola : MonoBehaviour
         }
         if (provjerabrojacaZaPocetakIgre > 3)
         {
-            Odbrojavanje.text = "DRIVE!";
+            if (GLOBALNE.EngHrv == true)
+            {
+                Odbrojavanje.text = "VOZI!";
+            }
+            else if (GLOBALNE.EngHrv == false)
+            {
+                Odbrojavanje.text = "DRIVE!";
+            }
         }
         if (provjerabrojacaZaPocetakIgre > 4)
         {
@@ -399,7 +417,15 @@ public class Auto_Kontrola : MonoBehaviour
     void PrijedeniMetri(int brzina)
     {
         tempzabrojmetara += ((brzina * 1000) / 3600) * 2;
-        PrijedenoMetara.text = tempzabrojmetara + (" metara");
+        if (GLOBALNE.EngHrv == true)
+        {
+            PrijedenoMetara.text = tempzabrojmetara + (" metara");
+        }
+        else if (GLOBALNE.EngHrv == false)
+        {
+            PrijedenoMetara.text = tempzabrojmetara + (" meters");
+        }
+
 
         GLOBALNE.BrojPrijedenihMetara += tempzabrojmetara;
 
@@ -449,8 +475,7 @@ public class Auto_Kontrola : MonoBehaviour
             TurboOdbrojavanje = 0;
 
             GLOBALNE.TURBO = 0;
-            TurboHelper = false;
-            Debug.Log("Unutra");        
+            TurboHelper = false;       
         }
 
         yield return null;
@@ -461,8 +486,9 @@ public class Auto_Kontrola : MonoBehaviour
     /// </summary>
     void DekativacijaTurba()
     {
-        MaxBrzina -= 30;
-        TrenutnaBrzinaAuta -= 30;
+        MaxBrzina -= 15;
+        TrenutnaBrzinaAuta -= 15;
+        GLOBALNE.TrenutnaBrzina = MaxBrzina;
         TurboHelper = true;
 
     }

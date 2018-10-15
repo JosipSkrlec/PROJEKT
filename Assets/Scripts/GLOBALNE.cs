@@ -37,6 +37,11 @@ public class GLOBALNE : MonoBehaviour
     public static int TURBO;
     public static int BrojNovcicaTrenutno;
     public static int BrojPrijedenihMetara;
+
+    // ne treba refreshati
+    // TRUE je HRV false je ENG
+    public static bool EngHrv = true;
+
 }
 
 

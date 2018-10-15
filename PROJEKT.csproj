@@ -80,13 +80,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Auto_Kontrola.cs" />
+    <Compile Include="Assets\Scripts\ButtonsKontrola.cs" />
     <Compile Include="Assets\Scripts\CoinDestroy.cs" />
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\GLOBALNE.cs" />
     <Compile Include="Assets\Scripts\GorivoDestroy.cs" />
+    <Compile Include="Assets\Scripts\JEZICI.cs" />
     <Compile Include="Assets\Scripts\KontrolaIzmeduScena.cs" />
     <Compile Include="Assets\Scripts\KontrolaZaNastavakIgre.cs" />
     <Compile Include="Assets\Scripts\KontrolaZavrsetakIgre.cs" />
+    <Compile Include="Assets\Scripts\PromjenaJezika.cs" />
     <Compile Include="Assets\Scripts\Ulje_Kontrola.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
