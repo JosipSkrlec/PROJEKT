@@ -41,6 +41,10 @@ public class GLOBALNE : MonoBehaviour
     // ne treba refreshati
     // TRUE je HRV false je ENG
     public static bool EngHrv = true;
+    public static int UkupanBrojPrijedenihMetara;
+
+
+
 
 }
 

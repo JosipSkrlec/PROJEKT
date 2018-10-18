@@ -26,6 +26,8 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
     public Text sto;
     public Text Izlazizpanelanazavrsni;
 
+    public Text BrojMetaraZavrsni;
+
 
     private void Start()
     {
@@ -102,11 +104,13 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
     }
 
     public void BaciNaZavrsni()
-    {
-        
+    {        
 
         PanelZavrsni.SetActive(true);
         GLOBALNE.UgasiPanelZaNastavakIgre = false;
+        SAVE.COINS.SpremiStanjeCoinsa();
+        SAVE.BROJMETARA.SpremiBrojPrijedenihMetara();
+        BrojMetaraZavrsni.text = GLOBALNE.BrojPrijedenihMetara.ToString();
         PanelZaNastavakIgre.SetActive(false);
     }
 

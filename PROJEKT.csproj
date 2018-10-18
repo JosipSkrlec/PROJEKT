@@ -14,7 +14,6 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.0f3</UnityVersion>
@@ -51,36 +50,35 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/PROGRAMI/UNITY/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Auto_Kontrola.cs" />
-    <Compile Include="Assets\Scripts\ButtonsKontrola.cs" />
     <Compile Include="Assets\Scripts\CoinDestroy.cs" />
     <Compile Include="Assets\Scripts\CoinSpawner.cs" />
     <Compile Include="Assets\Scripts\GLOBALNE.cs" />
@@ -89,8 +87,12 @@
     <Compile Include="Assets\Scripts\KontrolaIzmeduScena.cs" />
     <Compile Include="Assets\Scripts\KontrolaZaNastavakIgre.cs" />
     <Compile Include="Assets\Scripts\KontrolaZavrsetakIgre.cs" />
+    <Compile Include="Assets\Scripts\PrikazStanjaNovcica.cs" />
     <Compile Include="Assets\Scripts\PromjenaJezika.cs" />
+    <Compile Include="Assets\Scripts\SAVE.cs" />
+    <Compile Include="Assets\Scripts\UkupanBrojPrijedenihPrikaz.cs" />
     <Compile Include="Assets\Scripts\Ulje_Kontrola.cs" />
+    <Compile Include="Assets\Scripts\Upgrades.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

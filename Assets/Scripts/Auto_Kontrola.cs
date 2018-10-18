@@ -58,7 +58,7 @@ public class Auto_Kontrola : MonoBehaviour
 
     // za turbotemp
     int TurboTemp1 = 0;
-    float TurboTemp2 = 0.0f;  
+    float TurboTemp2 = 0.0f;
 
     // ZA FPS
     public float updateRateSeconds = 4.0f;
@@ -77,34 +77,22 @@ public class Auto_Kontrola : MonoBehaviour
         FullTurbo.enabled = false;
         Svjetla.SetActive(false);
 
+
+        DanNoc();
+        // promjena jezika , true i false se seta na pocetnoj (ulaznoj) sceni
         if (GLOBALNE.EngHrv == true)
         {
             prijedenoText.text = Croatian.prijedenokilometara;
+            PrijedenoMetara.text = "0 metara";
         }
         else if (GLOBALNE.EngHrv == false)
         {
             prijedenoText.text = English.prijedenokilometara;
+            PrijedenoMetara.text = "0 meters";
         }
-
-        DanNoc();
-
-        // TODO - metoda init koja ce citati iz datoteke byte i pretvarati u vrijednosti i stavljati u globalne varijable
-        GLOBALNE.NajvecaBrzinaAuta = 15.0f;
-        GLOBALNE.Ubrzanje = 1.0f;
-        GLOBALNE.Usporavanje = 2.0f;
-        GLOBALNE.MaxGoriva = 2.0f;
-        // sljedece dvije varijable se mjenjaju zajedno.. Za gorivo
-        GLOBALNE.OduzimanjeOdSto = 1;
-        GLOBALNE.OduzimanjeScaleSlika = 0.02f;
-
-        GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
-        GLOBALNE.GORIVO = 100;
-        GLOBALNE.TURBO = 10;
-        GLOBALNE.NastaviIgrati = true;
-        GLOBALNE.TrenutnoSkretanje = 0.6f;
-        GLOBALNE.UgasiPanelZaNastavakIgre = true;
-
-        PostotakGoriva.text = "100 %";
+        // u init je za upgrade i za Coinse
+        INIT();
+        Debug.Log(GLOBALNE.NajvecaBrzinaAuta);
 
         MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
         Ubrzanje = GLOBALNE.Ubrzanje;
@@ -125,14 +113,31 @@ public class Auto_Kontrola : MonoBehaviour
         else if (GLOBALNE.GORIVO != 0 && GLOBALNE.NastaviIgrati == true)
         {
             // if else za skretanje u lijevo i desno A=lijevo, D=desno
-            if (Input.GetKey(KeyCode.A))
+            if (GLOBALNE.TrenutnaBrzina > 2 && GLOBALNE.TrenutnaBrzina < 5)
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.2f, 0.0f, Space.World);
+
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * 0.2f, 0.0f, Space.World);
+                }
             }
-            else if (Input.GetKey(KeyCode.D))
+            else if (GLOBALNE.TrenutnaBrzina > 5)
             {
-                transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
+
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Rotate(0.0f, Input.GetAxis("Horizontal") * GLOBALNE.TrenutnoSkretanje, 0.0f, Space.World);
+                }
             }
+
 
             #region Objasnjenje turba i deaktivacije
             //TurboOdbrojavanje je varijabla koja se svake sekunde podize za deltatime sve dok mi ne pritisnemo space,
@@ -141,7 +146,6 @@ public class Auto_Kontrola : MonoBehaviour
             // deaktivacijaTurba() je metoda koja se poziva te sve varijable vraca na prethodno stanje
             #endregion
             TurboOdbrojavanje += Time.deltaTime;
-            Debug.Log(TurboOdbrojavanje);
 
             if (TurboOdbrojavanje < 3 && SpacejePritisnut == true)
             {
@@ -157,7 +161,7 @@ public class Auto_Kontrola : MonoBehaviour
                 Brzinomjer.text = TrenutnaBrzinaAuta * 2 + " km/h";
                 UbrzajAuto();
                 samojednomTurbo = false;
-            
+
 
             }
             else if (TurboOdbrojavanje < 6 && SpacejePritisnut == true)
@@ -270,16 +274,40 @@ public class Auto_Kontrola : MonoBehaviour
 
     }
     /// <summary>
+    /// Metoda INIT() ucitava iz datoteke podatke te sprema u GLOBALNE varijable
+    /// </summary>
+    void INIT()
+    {
+        SAVE.UPGRADES.UcitajTrenutnoStanjeAuta();
+        SAVE.COINS.UcitajStanjeCoinsa();
+
+        GLOBALNE.MaxGoriva = 2.0f;
+        // sljedece dvije varijable se mjenjaju zajedno.. Za gorivo
+        GLOBALNE.OduzimanjeOdSto = 1;
+        GLOBALNE.OduzimanjeScaleSlika = 0.02f;
+
+        GLOBALNE.TrenutnoGorivo = GLOBALNE.MaxGoriva;
+        GLOBALNE.GORIVO = 100;
+        GLOBALNE.TURBO = 10;
+        GLOBALNE.NastaviIgrati = true;
+        GLOBALNE.TrenutnoSkretanje = 0.6f;
+        GLOBALNE.UgasiPanelZaNastavakIgre = true;
+
+        PostotakGoriva.text = "100 %";
+
+    }
+
+    /// <summary>
     /// Funkcija koja mjenja boju na directionlight za dan i noc.. random 
     /// </summary>
     void DanNoc()
     {
-        int temp1 = Random.Range(1,3);
+        int temp1 = Random.Range(1, 3);
         // NOC
         if (temp1 == 1)
         {
             //Debug.Log("1");
-            DanNocsvjetlo.GetComponent<Light>().color = new Color(0,0,0,250);
+            DanNocsvjetlo.GetComponent<Light>().color = new Color(0, 0, 0, 250);
         }
         // DAN
         if (temp1 == 2)
@@ -427,7 +455,7 @@ public class Auto_Kontrola : MonoBehaviour
         }
 
 
-        GLOBALNE.BrojPrijedenihMetara += tempzabrojmetara;
+        GLOBALNE.BrojPrijedenihMetara = tempzabrojmetara;
 
     }
 
@@ -475,7 +503,7 @@ public class Auto_Kontrola : MonoBehaviour
             TurboOdbrojavanje = 0;
 
             GLOBALNE.TURBO = 0;
-            TurboHelper = false;       
+            TurboHelper = false;
         }
 
         yield return null;
