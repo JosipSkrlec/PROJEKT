@@ -298,7 +298,7 @@ public class Auto_Kontrola : MonoBehaviour
     /// </summary>
     void DanNoc()
     {
-        int temp1 = Random.Range(1, 3);
+        int temp1 = Random.Range(2, 2);
         // NOC
         if (temp1 == 1)
         {

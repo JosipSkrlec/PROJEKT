@@ -17,7 +17,7 @@ public class Croatian : MonoBehaviour
     // za panel nastavakigre kupovina
 
     public static string Naslovpanela1 = "Ponestalo Vam je Goriva!";
-    public static string OpisPanela1 = "Možete kupiti naše gorivo, pogledajte ponude ispod!";
+    public static string OpisPanela1 = "Možete kupiti naše gorivo, pogledajte ponude ispod!     Kupnja moguca samo jednom!";
     public static string pedeset = "50% goriva";
     public static string sto = "100% goriva";
     public static string Izlaz1 = "Izadi";
@@ -39,7 +39,7 @@ public class English : MonoBehaviour
 
     // za panel nastavakigre kupovina
     public static string Naslovpanela1 = "You are out of fuel!";
-    public static string OpisPanela1 = "You can buy our fuel for coins, see our offers!";
+    public static string OpisPanela1 = "You can buy our fuel for coins, see our offers!      Just once!";
     public static string pedeset = "50% fuel";
     public static string sto = "100% fuel";
     public static string Izlaz1 = "Exit";

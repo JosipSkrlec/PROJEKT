@@ -24,6 +24,7 @@ public class GLOBALNE : MonoBehaviour
     // temp u igri
     public static bool NastaviIgrati = true;
     public static bool PrikaziPanelZaNastavakIgreJednom = true;
+    public static bool Kupnjagorivajedanput = true;
     
     public static bool UgasiPanelZaNastavakIgre = true;
 

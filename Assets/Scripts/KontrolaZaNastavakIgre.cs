@@ -57,51 +57,60 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
 
     public void PedesetPosto()
     {
-        if (GLOBALNE.BrojNovcicaTrenutno == 0)
+        if (GLOBALNE.Kupnjagorivajedanput == true)
         {
-            PrvaOpcijaPedesetPostoGoriva.enabled = false;
-        }
-        else
-        {            
-            GLOBALNE.BrojNovcicaTrenutno -= 1;
-            BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
-            GLOBALNE.GORIVO = 50;
-            GLOBALNE.TrenutnoGorivo = PrvaOpcija;
-            GLOBALNE.NastaviIgrati = true;
-            GLOBALNE.PrikaziPanelZaNastavakIgreJednom = false;
-            PostotakGoriva.text = "50%";
+            if (GLOBALNE.BrojNovcicaTrenutno == 0)
+            {
+                PrvaOpcijaPedesetPostoGoriva.enabled = false;
+            }
+            else
+            {
+                GLOBALNE.BrojNovcicaTrenutno -= 1;
+                BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
+                GLOBALNE.GORIVO = 50;
+                GLOBALNE.TrenutnoGorivo = PrvaOpcija;
+                GLOBALNE.NastaviIgrati = true;
+                GLOBALNE.PrikaziPanelZaNastavakIgreJednom = false;
+                PostotakGoriva.text = "50%";
+                GLOBALNE.Kupnjagorivajedanput = false;
 
-            ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+                ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
 
-            PanelZaNastavakIgre.SetActive(false);
+                PanelZaNastavakIgre.SetActive(false);
+            }
         }
 
     }
 
     public void StoPosto()
     {
-        if (GLOBALNE.BrojNovcicaTrenutno < 5)
+        if (GLOBALNE.Kupnjagorivajedanput == true)
         {
-            DrugaOpcijastoPostoGoriva.enabled = false;
-        }
-        else
-        {
-            GLOBALNE.BrojNovcicaTrenutno -= 5;
-            BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
-            GLOBALNE.GORIVO = 100;
-            GLOBALNE.TrenutnoGorivo = DrugaOpcija;
-            GLOBALNE.NastaviIgrati = true;
-            GLOBALNE.PrikaziPanelZaNastavakIgreJednom = false;
-            PostotakGoriva.text = "100%";
+            if (GLOBALNE.BrojNovcicaTrenutno < 5)
+            {
+                DrugaOpcijastoPostoGoriva.enabled = false;
+            }
+            else
+            {
+                GLOBALNE.BrojNovcicaTrenutno -= 5;
+                BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
+                GLOBALNE.GORIVO = 100;
+                GLOBALNE.TrenutnoGorivo = DrugaOpcija;
+                GLOBALNE.NastaviIgrati = true;
+                GLOBALNE.PrikaziPanelZaNastavakIgreJednom = false;
+                PostotakGoriva.text = "100%";
 
-            ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+                ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+                GLOBALNE.Kupnjagorivajedanput = false;
 
-            PanelZaNastavakIgre.SetActive(false);
+                PanelZaNastavakIgre.SetActive(false);
+            }
         }
+
     }
 
     public void BaciNaZavrsni()
-    {   
+    {           
         PanelZavrsni.SetActive(true);
         GLOBALNE.UgasiPanelZaNastavakIgre = false;
         SAVE.COINS.SpremiStanjeCoinsa();

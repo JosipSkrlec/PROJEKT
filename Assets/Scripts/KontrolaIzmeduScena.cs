@@ -33,6 +33,7 @@ public class KontrolaIzmeduScena : MonoBehaviour {
         // temp u igri
         GLOBALNE.NastaviIgrati = true;
         GLOBALNE.PrikaziPanelZaNastavakIgreJednom = true;
+        GLOBALNE.Kupnjagorivajedanput = true;
 
         GLOBALNE.UgasiPanelZaNastavakIgre = true;
 
