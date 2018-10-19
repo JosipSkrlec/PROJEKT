@@ -6,13 +6,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// SAVE klasa sadrzi 3 klase UPGRADES,COINS i BROJMETARA, svaka klasa ima save i load metodu podataka koje moramo spremati.
+/// </summary>
 public class SAVE : MonoBehaviour
 {
-
     public class UPGRADES
     {
         /// <summary>
-        /// Metoda SpremiTrenutnoStanje() ukoliko file path ne postoji sprema default vrijednost auta, ukoliko postoji zapise nove vrijednosti koje mjenjaju upgrade-i u GARAGE.
+        /// Metoda SpremiTrenutnoStanjeAuta() ukoliko file path ne postoji sprema default vrijednost auta, ukoliko postoji zapise nove vrijednosti koje mjenjaju upgrade-i u GARAGE.
         /// </summary>
         public static void SpremiTrenutnoStanjeAuta()
         {
@@ -22,6 +24,7 @@ public class SAVE : MonoBehaviour
             if (File.Exists(destination))
             {
                 file = File.OpenWrite(destination);
+
                 UPGRADEAutaKlasaZaObjekte a = new UPGRADEAutaKlasaZaObjekte();
                 a.Najvecamogucabrzina = GLOBALNE.NajvecaBrzinaAuta;
                 a.UbrzavanjeAuta = GLOBALNE.Ubrzanje;
@@ -34,9 +37,9 @@ public class SAVE : MonoBehaviour
             {
                 file = File.Create(destination);
                 UPGRADEAutaKlasaZaObjekte a1 = new UPGRADEAutaKlasaZaObjekte();
-                a1.Najvecamogucabrzina = 15.0f;
-                a1.UbrzavanjeAuta = 1.0f;
-                a1.UsporavanjeAuta = 3.0f;
+                a1.Najvecamogucabrzina = GLOBALNE.NajvecaBrzinaAuta;
+                a1.UbrzavanjeAuta = GLOBALNE.Ubrzanje;
+                a1.UsporavanjeAuta = GLOBALNE.Usporavanje;
 
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(file, a1);
@@ -46,13 +49,12 @@ public class SAVE : MonoBehaviour
         }
 
         /// <summary>
-        /// Metoda UcitajTrenutnoStanje() ucita iz datoteke trenutno stanje te ih zapise u varijable GLOBALNE....
+        /// Metoda UcitajTrenutnoStanjeAuta() ucita iz datoteke trenutno stanje te ih zapise u varijable GLOBALNE....
         /// </summary>
         public static void UcitajTrenutnoStanjeAuta()
         {
             try
             {
-
                 string destination = Application.persistentDataPath + "/UPGRADESAUTO.dat";
                 FileStream file;
 
@@ -67,8 +69,6 @@ public class SAVE : MonoBehaviour
                     GLOBALNE.NajvecaBrzinaAuta = UcitaniPodaci.Najvecamogucabrzina;
                     GLOBALNE.Ubrzanje = UcitaniPodaci.UbrzavanjeAuta;
                     GLOBALNE.Usporavanje = UcitaniPodaci.UsporavanjeAuta;
-
-
                 }
                 else
                 {
@@ -97,7 +97,7 @@ public class SAVE : MonoBehaviour
     public class COINS
     {
         /// <summary>
-        /// Metoda SpremiTrenutnoStanje() ukoliko file path ne postoji sprema default vrijednost auta, ukoliko postoji zapise nove vrijednosti koje mjenjaju upgrade-i u GARAGE.
+        /// Metoda SpremiStanjeCoinsa() ukoliko file path ne postoji sprema stanje coins-a u .dat file
         /// </summary>
         public static void SpremiStanjeCoinsa()
         {
@@ -118,7 +118,7 @@ public class SAVE : MonoBehaviour
             {
                 file = File.Create(destination);
                 CoinKlasaZaObjekte c1 = new CoinKlasaZaObjekte();
-                c1.COIN = 0;
+                c1.COIN = GLOBALNE.BrojNovcicaTrenutno;
 
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(file, c1);
@@ -128,13 +128,12 @@ public class SAVE : MonoBehaviour
         }
 
         /// <summary>
-        /// Metoda UcitajStanjeCoinsa() ucita iz datoteke broj skupljenih cins-a
+        /// Metoda UcitajStanjeCoinsa() ucita iz datoteke broj skupljenih coins-a
         /// </summary>
         public static void UcitajStanjeCoinsa()
         {
             try
             {
-
                 string destination = Application.persistentDataPath + "/COINS.dat";
                 FileStream file;
 
@@ -147,8 +146,6 @@ public class SAVE : MonoBehaviour
                     Debug.Log(destination);
 
                     GLOBALNE.BrojSvihNovcica = UcitaniPodaci.COIN;
-
-
                 }
                 else
                 {
@@ -157,7 +154,6 @@ public class SAVE : MonoBehaviour
 
                     return;
                 }
-
 
                 file.Close();
 
@@ -178,7 +174,7 @@ public class SAVE : MonoBehaviour
     public class BROJMETARA
     {
         /// <summary>
-        /// Metoda SpremiTrenutnoStanje() ukoliko file path ne postoji sprema default vrijednost auta, ukoliko postoji zapise nove vrijednosti koje mjenjaju upgrade-i u GARAGE.
+        /// Metoda SpremiBrojPrijedenihMetara() sprema u .dat file broj svih prijedenih metara
         /// </summary>
         public static void SpremiBrojPrijedenihMetara()
         {
@@ -210,13 +206,12 @@ public class SAVE : MonoBehaviour
         }
 
         /// <summary>
-        /// Metoda UcitajStanjeCoinsa() ucita iz datoteke broj skupljenih cins-a
+        /// Metoda UcitajBrojPrijedenihMetara() ucita iz datoteke koliko je ukupno prijedenih metara
         /// </summary>
         public static void UcitajBrojPrijedenihMetara()
         {
             try
             {
-
                 string destination = Application.persistentDataPath + "/BROJMETARA.dat";
                 FileStream file;
 
@@ -236,7 +231,6 @@ public class SAVE : MonoBehaviour
 
                     return;
                 }
-
 
                 file.Close();
 
@@ -267,6 +261,7 @@ public class SAVE : MonoBehaviour
         public int COIN;
 
     }
+    // klasa pomocu koje stvaramo objekte METRI
     [Serializable]
     public class MetarKlasaZaObjekte
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO - dodati za sve hrv i eng
 public class Croatian : MonoBehaviour
 {
     // za pocetnu

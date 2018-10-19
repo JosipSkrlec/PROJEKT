@@ -16,6 +16,4 @@ public class KontrolaZavrsetakIgre : MonoBehaviour {
         TrenutnoNovcica.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
     }
 
-
-
 }

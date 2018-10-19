@@ -12,8 +12,6 @@ public class Auto_Kontrola : MonoBehaviour
     // skretanje auta , normal je 0.6f 
     // STATIC varijable se ne resetiraju na LoadLevel !!
 
-    // TODO -  mora se pozvati funkcija SAVE koja ce spremiti svo trenutno stanje Globalnih varijabli Novcica i upgrade(update,brojnovcica i ostalo!)
-
     #region Public varijable
     public Text Brzinomjer;
     public Text Odbrojavanje;
@@ -217,7 +215,6 @@ public class Auto_Kontrola : MonoBehaviour
                 }
 
                 //Debug.Log(odbrojavanjeVremena1);
-                // TODO - ovaj 0.3f je vrijeme kad oduzme gorivo, treba napraviti globalnu var. koja ce se moci nadograditi da dulje traje vrijeme  npr 0.4f i 0.5f
                 #region Opis zasto su 2 if-a
                 // prvi if je za provjeru vremena, ako prode zadano vrijeme ulazi u if i zove metodu smanji gorivo
                 // drugi if je da provjeri da li je broj veci od zadanog vremena, ukoliko je seta trigger u true
@@ -255,7 +252,6 @@ public class Auto_Kontrola : MonoBehaviour
                 }
 
             }
-            // TODO - kada je turbo pun, pritiskom na space se ubrza auto na neki odredeni broj sekundi.
 
 
 
@@ -473,7 +469,6 @@ public class Auto_Kontrola : MonoBehaviour
             }
             else if (GLOBALNE.TURBO < GLOBALNE.MaxTurbo && ScaleSlikaTurbo < 2.0f)
             {
-                // TODO- ovaj 50 moramo zamijeniti sa Globalnom varijablom koja ce se nadograditi!.. svakih npr. 100 metara 75 doda turbo
                 BrojacSvakihPedestMetara += 50;
                 GLOBALNE.TURBO += 10;
                 ScaleSlikaTurbo += DodavanjeScaleSlikaTurbo;

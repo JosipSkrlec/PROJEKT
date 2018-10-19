@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Upgrades : MonoBehaviour
 {
-
-
+    // TODO - dodati payment upgrade-ova npr lvl1 = 10c lvl2 = 30c i lvl 3 = 50c
+    #region public Varijable
     public Text Upgrade1;
     public Text Upgrade2;
     public Text Upgrade3;
@@ -14,26 +14,35 @@ public class Upgrades : MonoBehaviour
     public Button Button1upgrade;
     public Button Button2upgrade;
     public Button button3upgrade;
+    #endregion
 
+    #region temp varijable
     float temp1 = 0.0f;
     float temp2 = 0.0f;
     float temp3 = 0.0f;
-
+    int brojNovcica = 0;
+    #endregion
+    
     private void Start()
     {
+        // ucitaj stanje auta i novcica
         SAVE.UPGRADES.UcitajTrenutnoStanjeAuta();
-
+        SAVE.COINS.UcitajStanjeCoinsa();
     }
+
+
     private void Update()
     {
+        // nakon sto se ucita u startu tada se globalne zapisuju u temp varijable koje kontroliraju upgrade.
         temp1 = GLOBALNE.NajvecaBrzinaAuta;
         temp2 = GLOBALNE.Ubrzanje;
         temp3 = GLOBALNE.Usporavanje;
+        brojNovcica = GLOBALNE.BrojSvihNovcica;
 
         OpisTrenutnogStanja.text = "Auto trenutno ide max brzinom od " + GLOBALNE.NajvecaBrzinaAuta * 2
         + ". Auto ubrzava za " + GLOBALNE.Ubrzanje + " m/s " + "te uporava za -" + GLOBALNE.Usporavanje + " m/s";
 
-        // za upgrade1
+        // za upgrade1 maxbrzina
         if (temp1 == 35.0f)
         {
             Upgrade1.text = "Full upgrade";
@@ -41,17 +50,17 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp1 == 15.0f)
         {
-            Upgrade1.text = "lvl1. 50km/h";
+            Upgrade1.text = "lvl1. 50km/h           5 Coinsa";
         }
         else if (temp1 == 25.0f)
         {
-            Upgrade1.text = "lvl2. 60km/h";
+            Upgrade1.text = "lvl2. 60km/h      10 Coinsa";
         }
         else if (temp1 == 30.0f)
         {
-            Upgrade1.text = "lvl3. 70km/h";
+            Upgrade1.text = "lvl3. 70km/h      15 Coinsa";
         }
-        // za upgrade2
+        // za upgrade2 ubrzanje
         if (temp2 == 3.0f)
         {
             Upgrade2.text = "Full upgrade";
@@ -59,18 +68,18 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp2 == 1.0f)
         {
-            Upgrade2.text = "lvl1. +2 m/s";
+            Upgrade2.text = "lvl1. +2 m/s            5 Coinsa";
         }
         else if (temp2 == 2.0f)
         {
-            Upgrade2.text = "lvl2. +2.5 m/s";
+            Upgrade2.text = "lvl2. +2.5 m/s       10 Coinsa";
         }
         else if (temp2 == 2.5f)
         {
-            Upgrade2.text = "lvl3. +3 m/s";
+            Upgrade2.text = "lvl3. +3 m/s       15 Coinsa";
         }
 
-        // za upgrade3
+        // za upgrade3 usporavanje
         if (temp3 == 1.0f)
         {
             Upgrade3.text = "Full Upgrade";
@@ -78,15 +87,15 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp3 == 3.0f)
         {
-            Upgrade3.text = "lvl1. -2 m/s";
+            Upgrade3.text = "lvl1. -2 m/s            5 Coinsa";
         }
         else if (temp3 == 2.0f)
         {
-            Upgrade3.text = "lvl2. -1.5 m/s";
+            Upgrade3.text = "lvl2. -1.5 m/s       10 Coinsa";
         }
         else if (temp3 == 1.5f)
         {
-            Upgrade3.text = "lvl3. -1 m/s";
+            Upgrade3.text = "lvl3. -1 m/s       15 Coinsa";
         }
 
     }
@@ -94,23 +103,32 @@ public class Upgrades : MonoBehaviour
 
     public void Upgrade1Buy()
     {
-        if (temp1 == 15.0f)
+        if (temp1 == 15.0f && brojNovcica >= 5)
         {
 
             GLOBALNE.NajvecaBrzinaAuta = 25.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 5;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp1 == 25.0f)
+        if (temp1 == 25.0f && brojNovcica >= 10)
         {
 
             GLOBALNE.NajvecaBrzinaAuta = 30.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 10;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp1 == 30.0f)
+        if (temp1 == 30.0f && brojNovcica >= 15)
         {
 
             GLOBALNE.NajvecaBrzinaAuta = 35.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 15;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
 
     }
@@ -118,23 +136,32 @@ public class Upgrades : MonoBehaviour
 
     public void Upgrade2Buy()
     {
-        if (temp2 == 1.0f)
+        if (temp2 == 1.0f && brojNovcica >= 5)
         {
 
             GLOBALNE.Ubrzanje = 2.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 5;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp2 == 2.0f)
+        if (temp2 == 2.0f && brojNovcica >= 10)
         {
 
             GLOBALNE.Ubrzanje = 2.5f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 10;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp2 == 2.5f)
+        if (temp2 == 2.5f && brojNovcica >= 15)
         {
 
             GLOBALNE.Ubrzanje = 3.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 15;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
 
     }
@@ -142,23 +169,32 @@ public class Upgrades : MonoBehaviour
 
     public void Upgrade3Buy()
     {
-        if (temp3 == 3.0f)
+        if (temp3 == 3.0f && brojNovcica >= 5)
         {
 
             GLOBALNE.Usporavanje = 2.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 5;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp3 == 2.0f)
+        if (temp3 == 2.0f && brojNovcica >= 10)
         {
 
             GLOBALNE.Usporavanje = 1.5f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 10;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp3 == 1.5f)
+        if (temp3 == 1.5f && brojNovcica >= 15)
         {
 
             GLOBALNE.Usporavanje = 1.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
+
+            GLOBALNE.BrojSvihNovcica -= 15;
+            SAVE.COINS.SpremiStanjeCoinsa();
         }
 
     }

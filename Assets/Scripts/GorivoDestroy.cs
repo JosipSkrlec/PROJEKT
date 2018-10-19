@@ -33,20 +33,7 @@ public class GorivoDestroy : MonoBehaviour {
 
             PostotakGoriva.text = GLOBALNE.GORIVO + " %";
 
-
             Destroy(GorivoZaDestroy);
-
         }
-
-
-
     }
-
-
-
-
-
-
-
-
 }

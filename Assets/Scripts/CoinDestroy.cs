@@ -28,14 +28,7 @@ public class CoinDestroy : MonoBehaviour {
 
             //CoinZaDestroy.GetComponent<MeshRenderer>().enabled = false;
 
-            Destroy(CoinZaDestroy);
-   
-
+            Destroy(CoinZaDestroy); 
         }
-
-
-
-    }
-
-
+    }    
 }

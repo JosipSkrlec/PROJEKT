@@ -10,6 +10,9 @@ public class PrikazStanjaNovcica : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+    }
+    private void Update()
+    {
         SAVE.COINS.UcitajStanjeCoinsa();
         StanjeSvihNovcica.text = GLOBALNE.BrojSvihNovcica.ToString();
     }

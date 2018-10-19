@@ -29,8 +29,6 @@ public class KontrolaIzmeduScena : MonoBehaviour {
         GLOBALNE.OduzimanjeScaleSlika = 0.0f;
 
         GLOBALNE.OduzimanjeOdSto = 0;
-        GLOBALNE.BrojSvihNovcica = 0;
-
 
         // temp u igri
         GLOBALNE.NastaviIgrati = true;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class KontrolaZaNastavakIgre : MonoBehaviour {
 
+    #region Public Varijable
     // button opcije za nastavak igre (payment)
     public Button PrvaOpcijaPedesetPostoGoriva;
     public Button DrugaOpcijastoPostoGoriva;
@@ -25,9 +26,9 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
     public Text pedeset;
     public Text sto;
     public Text Izlazizpanelanazavrsni;
-
+    // Brojmetara je za broj prijedenih metara u jednom krugu
     public Text BrojMetaraZavrsni;
-
+    #endregion
 
     private void Start()
     {
@@ -48,8 +49,6 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
             sto.text = English.sto;
             Izlazizpanelanazavrsni.text = English.Izlaz1;
         }
-
-
     }
 
     // ovo je scale od zelene slike
@@ -99,13 +98,10 @@ public class KontrolaZaNastavakIgre : MonoBehaviour {
 
             PanelZaNastavakIgre.SetActive(false);
         }
-
-
     }
 
     public void BaciNaZavrsni()
-    {        
-
+    {   
         PanelZavrsni.SetActive(true);
         GLOBALNE.UgasiPanelZaNastavakIgre = false;
         SAVE.COINS.SpremiStanjeCoinsa();
