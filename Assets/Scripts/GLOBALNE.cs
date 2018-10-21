@@ -44,6 +44,9 @@ public class GLOBALNE : MonoBehaviour
     public static bool EngHrv = true;
     public static int UkupanBrojPrijedenihMetara;
 
+    // ovo je za pamcenje koja mapa je trenutno pa da se ne spawna na istoj!
+    // mapa 1-2-3 = zeleno-pustinja-snijeg
+    public static int TrenutnaMapa = 1;
 
 
 

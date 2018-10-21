@@ -46,7 +46,8 @@ public class KontrolaIzmeduScena : MonoBehaviour {
         GLOBALNE.TURBO = 0;
         GLOBALNE.BrojNovcicaTrenutno = 0;
         GLOBALNE.BrojPrijedenihMetara = 0;
-    }
+        GLOBALNE.TrenutnaMapa = 1;
+}
 
 
 

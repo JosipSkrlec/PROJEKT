@@ -170,7 +170,7 @@ public class Auto_Kontrola : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && TurboHelper)
             {
-                StartCoroutine(TurboMetodaNaPritisakSpace());
+                TurboMetodaNaPritisakSpace();
             }
 
             // Za paliti svjetla
@@ -298,7 +298,7 @@ public class Auto_Kontrola : MonoBehaviour
     /// </summary>
     void DanNoc()
     {
-        int temp1 = Random.Range(2, 2);
+        int temp1 = Random.Range(1, 3);
         // NOC
         if (temp1 == 1)
         {
@@ -466,6 +466,7 @@ public class Auto_Kontrola : MonoBehaviour
             if (GLOBALNE.TURBO > GLOBALNE.MaxTurbo)
             {
                 GLOBALNE.TURBO = 100;
+                FullTurbo.enabled = true;
             }
             else if (GLOBALNE.TURBO < GLOBALNE.MaxTurbo && ScaleSlikaTurbo < 2.0f)
             {
@@ -487,7 +488,7 @@ public class Auto_Kontrola : MonoBehaviour
     /// TurboMetodaNaPritisakSpace() je metoda koja kontrolira varijable koje utjecu na Ubrzanje auta i traje 3 sek
     /// </summary>
     /// <returns></returns>
-    IEnumerator TurboMetodaNaPritisakSpace()
+    void TurboMetodaNaPritisakSpace()
     {
         if (GLOBALNE.TURBO == 100)
         {
@@ -501,7 +502,6 @@ public class Auto_Kontrola : MonoBehaviour
             TurboHelper = false;
         }
 
-        yield return null;
     }
 
     /// <summary>
