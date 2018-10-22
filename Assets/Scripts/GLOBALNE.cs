@@ -48,7 +48,6 @@ public class GLOBALNE : MonoBehaviour
     // mapa 1-2-3 = zeleno-pustinja-snijeg
     public static int TrenutnaMapa = 2;
 
-    public static bool pobrancoin;
 
 
 

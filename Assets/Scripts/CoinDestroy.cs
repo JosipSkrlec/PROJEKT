@@ -23,7 +23,6 @@ public class CoinDestroy : MonoBehaviour {
 
         if (other.gameObject.name == "Auto")
         {
-            GLOBALNE.pobrancoin = true;
             GLOBALNE.BrojNovcicaTrenutno += 1;
             BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
 

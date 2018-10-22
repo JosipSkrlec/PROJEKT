@@ -89,7 +89,6 @@ public class Auto_Kontrola : MonoBehaviour
         }
         // u init je za upgrade i za Coinse
         INIT();
-        Debug.Log(GLOBALNE.NajvecaBrzinaAuta);
 
         MaxBrzina = GLOBALNE.NajvecaBrzinaAuta;
         Ubrzanje = GLOBALNE.Ubrzanje;
@@ -152,11 +151,14 @@ public class Auto_Kontrola : MonoBehaviour
                     TurboTemp2 = MaxBrzina + 15;
                     GLOBALNE.TrenutnaBrzina = TurboTemp2;
                 }
+                Debug.Log("Trenutna brzina: " + GLOBALNE.TrenutnaBrzina);
+                Debug.Log("Turbo: " + GLOBALNE.TURBO);
 
                 MaxBrzina = TurboTemp2;
                 TrenutnaBrzinaAuta = TurboTemp1;
                 Brzinomjer.text = TrenutnaBrzinaAuta * 2 + " km/h";
                 UbrzajAuto();
+
                 samojednomTurbo = false;
 
 
@@ -497,7 +499,7 @@ public class Auto_Kontrola : MonoBehaviour
             ScaleSlikaTurbo = 0.01f;
             TurboOdbrojavanje = 0;
 
-            GLOBALNE.TURBO = 0;
+            GLOBALNE.TURBO = 10;
             TurboHelper = false;
         }
 

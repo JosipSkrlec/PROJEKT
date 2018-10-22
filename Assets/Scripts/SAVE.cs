@@ -64,7 +64,7 @@ public class SAVE : MonoBehaviour
 
                     BinaryFormatter bf = new BinaryFormatter();
                     UPGRADEAutaKlasaZaObjekte UcitaniPodaci = (UPGRADEAutaKlasaZaObjekte)bf.Deserialize(file);
-                    Debug.Log(destination);
+                    //Debug.Log(destination);
 
                     GLOBALNE.NajvecaBrzinaAuta = UcitaniPodaci.Najvecamogucabrzina;
                     GLOBALNE.Ubrzanje = UcitaniPodaci.UbrzavanjeAuta;
@@ -72,7 +72,7 @@ public class SAVE : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!");
+                    //Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!");
                     GLOBALNE.NajvecaBrzinaAuta = 15.0f;
                     GLOBALNE.Ubrzanje = 1.0f;
                     GLOBALNE.Usporavanje = 3.0f;
@@ -86,7 +86,7 @@ public class SAVE : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
+                //Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
                 GLOBALNE.NajvecaBrzinaAuta = 15.0f;
                 GLOBALNE.Ubrzanje = 1.0f;
                 GLOBALNE.Usporavanje = 3.0f;
@@ -143,13 +143,13 @@ public class SAVE : MonoBehaviour
 
                     BinaryFormatter bf = new BinaryFormatter();
                     CoinKlasaZaObjekte UcitaniPodaci = (CoinKlasaZaObjekte)bf.Deserialize(file);
-                    Debug.Log(destination);
+                    //Debug.Log(destination);
 
                     GLOBALNE.BrojSvihNovcica = UcitaniPodaci.COIN;
                 }
                 else
                 {
-                    Debug.Log("Problem kod load-a COINSA, ili nije spremljeno ili se ucitava prvi puta!");
+                    //Debug.Log("Problem kod load-a COINSA, ili nije spremljeno ili se ucitava prvi puta!");
                     GLOBALNE.BrojSvihNovcica = 0;
 
                     return;
@@ -160,7 +160,7 @@ public class SAVE : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
+                //Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
                 GLOBALNE.NajvecaBrzinaAuta = 15.0f;
                 GLOBALNE.Ubrzanje = 1.0f;
                 GLOBALNE.Usporavanje = 3.0f;
@@ -227,7 +227,7 @@ public class SAVE : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Problem kod load-a BrojaMetara, ili nije spremljeno ili se ucitava prvi puta!");
+                    //Debug.Log("Problem kod load-a BrojaMetara, ili nije spremljeno ili se ucitava prvi puta!");
 
                     return;
                 }
@@ -237,7 +237,7 @@ public class SAVE : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Problem kod load-a BrojaMetara, ili nije spremljeno ili se ucitava prvi puta!" +e.Message);
+                //Debug.Log("Problem kod load-a BrojaMetara, ili nije spremljeno ili se ucitava prvi puta!" +e.Message);
             }
 
         }

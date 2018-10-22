@@ -10,7 +10,8 @@ public class Ulje_Kontrola : MonoBehaviour {
     {
         if (other.gameObject.name == "Auto")
         {
-           GLOBALNE.TrenutnaBrzina = 0.1f;
+           float a = GLOBALNE.TrenutnaBrzina;
+            GLOBALNE.TrenutnaBrzina = a * 0.50f;
            GLOBALNE.TrenutnoSkretanje = 0.1f;
         }
     }

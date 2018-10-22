@@ -14,6 +14,7 @@ public class CoinSpawner : MonoBehaviour {
 
     void FixedUpdate()
     {
+
     }
 
     void SpawnCoin()
@@ -30,11 +31,7 @@ public class CoinSpawner : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (GLOBALNE.pobrancoin == true)
-        {
-            SpawnCoin();
-            GLOBALNE.pobrancoin = false;
-        }
+        SpawnCoin();
     }
 
 
