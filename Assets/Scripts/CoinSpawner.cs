@@ -5,15 +5,15 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour {
 
     public GameObject Coin;
-    public GameObject MjestoSpawnanja;
+    // TODO - popraviti da respawna pobrani coin
 
     void Start()
     {
         SpawnCoin();
     }
-    void Update()
+
+    void FixedUpdate()
     {
-        //spawnBox();
     }
 
     void SpawnCoin()
@@ -27,4 +27,16 @@ public class CoinSpawner : MonoBehaviour {
         //spawn coina
         Instantiate(Coin, RandomPozicija, transform.rotation);    
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (GLOBALNE.pobrancoin == true)
+        {
+            SpawnCoin();
+            GLOBALNE.pobrancoin = false;
+        }
+    }
+
+
+
 }

@@ -46,7 +46,9 @@ public class GLOBALNE : MonoBehaviour
 
     // ovo je za pamcenje koja mapa je trenutno pa da se ne spawna na istoj!
     // mapa 1-2-3 = zeleno-pustinja-snijeg
-    public static int TrenutnaMapa = 1;
+    public static int TrenutnaMapa = 2;
+
+    public static bool pobrancoin;
 
 
 

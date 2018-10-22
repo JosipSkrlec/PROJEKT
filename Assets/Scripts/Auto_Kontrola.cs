@@ -75,7 +75,6 @@ public class Auto_Kontrola : MonoBehaviour
         FullTurbo.enabled = false;
         Svjetla.SetActive(false);
 
-
         DanNoc();
         // promjena jezika , true i false se seta na pocetnoj (ulaznoj) sceni
         if (GLOBALNE.EngHrv == true)
