@@ -6,6 +6,8 @@ public class CoinSpawner : MonoBehaviour {
 
     public GameObject Coin;
     // TODO - popraviti da respawna pobrani coin
+    int check1 = 0;
+    int check2 = 0;
 
     void Start()
     {
@@ -28,10 +30,19 @@ public class CoinSpawner : MonoBehaviour {
         //spawn coina
         Instantiate(Coin, RandomPozicija, transform.rotation);    
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        check1 = GLOBALNE.BrojNovcicaTrenutno;
+
+    }
 
     private void OnTriggerExit(Collider other)
     {
-        SpawnCoin();
+        check2 = GLOBALNE.BrojNovcicaTrenutno;
+        if (check1 != check2)
+        {
+            SpawnCoin();
+        }
     }
 
 

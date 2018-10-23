@@ -517,6 +517,37 @@ public class Auto_Kontrola : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name.Contains("Kaktus"))
+        {
+
+            // prikaz GorivoSlika ukoliko je false a false je po default-u
+            if (ZelenoGorivoSlika.enabled == false)
+            {
+                ZelenoGorivoSlika.enabled = true;
+            }
+
+            // za scale
+            GLOBALNE.TrenutnoGorivo = GLOBALNE.TrenutnoGorivo - 0.20f;
+
+            int temp = 0;
+            temp = GLOBALNE.GORIVO - 10;
+            GLOBALNE.GORIVO = temp;
+
+            PostotakGoriva.text = temp + " %";
+
+
+            ZelenoGorivoSlika.transform.localScale = new Vector3(GLOBALNE.TrenutnoGorivo, 0.5f, 1);
+
+            Triggerzagorivojednom = false;
+
+        }
+    }
+
+
+
+
 
 }
 

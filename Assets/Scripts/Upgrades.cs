@@ -54,11 +54,11 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp1 == 25.0f)
         {
-            Upgrade1.text = "lvl2. 60km/h      10 Coinsa";
+            Upgrade1.text = "lvl2. 60km/h      20 Coinsa";
         }
         else if (temp1 == 30.0f)
         {
-            Upgrade1.text = "lvl3. 70km/h      15 Coinsa";
+            Upgrade1.text = "lvl3. 70km/h      50 Coinsa";
         }
         // za upgrade2 ubrzanje
         if (temp2 == 3.0f)
@@ -72,11 +72,11 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp2 == 2.0f)
         {
-            Upgrade2.text = "lvl2. +2.5 m/s       10 Coinsa";
+            Upgrade2.text = "lvl2. +2.5 m/s       20 Coinsa";
         }
         else if (temp2 == 2.5f)
         {
-            Upgrade2.text = "lvl3. +3 m/s       15 Coinsa";
+            Upgrade2.text = "lvl3. +3 m/s       50 Coinsa";
         }
 
         // za upgrade3 usporavanje
@@ -91,11 +91,11 @@ public class Upgrades : MonoBehaviour
         }
         else if (temp3 == 2.0f)
         {
-            Upgrade3.text = "lvl2. -1.5 m/s       10 Coinsa";
+            Upgrade3.text = "lvl2. -1.5 m/s       20 Coinsa";
         }
         else if (temp3 == 1.5f)
         {
-            Upgrade3.text = "lvl3. -1 m/s       15 Coinsa";
+            Upgrade3.text = "lvl3. -1 m/s       50 Coinsa";
         }
 
     }
@@ -112,22 +112,22 @@ public class Upgrades : MonoBehaviour
             GLOBALNE.BrojSvihNovcica -= 5;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp1 == 25.0f && brojNovcica >= 10)
+        if (temp1 == 25.0f && brojNovcica >= 20)
         {
 
             GLOBALNE.NajvecaBrzinaAuta = 30.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 10;
+            GLOBALNE.BrojSvihNovcica -= 20;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp1 == 30.0f && brojNovcica >= 15)
+        if (temp1 == 30.0f && brojNovcica >= 50)
         {
 
             GLOBALNE.NajvecaBrzinaAuta = 35.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 15;
+            GLOBALNE.BrojSvihNovcica -= 50;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
 
@@ -145,22 +145,22 @@ public class Upgrades : MonoBehaviour
             GLOBALNE.BrojSvihNovcica -= 5;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp2 == 2.0f && brojNovcica >= 10)
+        if (temp2 == 2.0f && brojNovcica >= 20)
         {
 
             GLOBALNE.Ubrzanje = 2.5f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 10;
+            GLOBALNE.BrojSvihNovcica -= 20;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp2 == 2.5f && brojNovcica >= 15)
+        if (temp2 == 2.5f && brojNovcica >= 50)
         {
 
             GLOBALNE.Ubrzanje = 3.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 15;
+            GLOBALNE.BrojSvihNovcica -= 50;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
 
@@ -178,22 +178,22 @@ public class Upgrades : MonoBehaviour
             GLOBALNE.BrojSvihNovcica -= 5;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp3 == 2.0f && brojNovcica >= 10)
+        if (temp3 == 2.0f && brojNovcica >= 20)
         {
 
             GLOBALNE.Usporavanje = 1.5f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 10;
+            GLOBALNE.BrojSvihNovcica -= 20;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
-        if (temp3 == 1.5f && brojNovcica >= 15)
+        if (temp3 == 1.5f && brojNovcica >= 50)
         {
 
             GLOBALNE.Usporavanje = 1.0f;
             SAVE.UPGRADES.SpremiTrenutnoStanjeAuta();
 
-            GLOBALNE.BrojSvihNovcica -= 15;
+            GLOBALNE.BrojSvihNovcica -= 50;
             SAVE.COINS.SpremiStanjeCoinsa();
         }
 
