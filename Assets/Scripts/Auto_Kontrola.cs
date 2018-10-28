@@ -519,7 +519,7 @@ public class Auto_Kontrola : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("Kaktus"))
+        if (other.name.Contains("Kaktus") && GLOBALNE.GORIVO > 0 && ZelenoGorivoSlika.transform.localScale.x !=0)
         {
 
             // prikaz GorivoSlika ukoliko je false a false je po default-u
@@ -542,6 +542,11 @@ public class Auto_Kontrola : MonoBehaviour
 
             Triggerzagorivojednom = false;
 
+        }
+        else if (GLOBALNE.GORIVO <0)
+        {
+            GLOBALNE.GORIVO = 0;
+            ZelenoGorivoSlika.transform.localScale = new Vector3(0,0.5f,1);
         }
     }
 
