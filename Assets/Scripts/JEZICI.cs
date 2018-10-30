@@ -12,7 +12,7 @@ public class Croatian : MonoBehaviour
     public static string OIgriButtonText = "O Igri";
     public static string IzadiIzIgreButtonText = "Izađi";
 
-    public static string prijedenokilometara = "Prijeđeno :";
+    public static string prijedenokilometara = "ukupno prijeđenih :";
 
     // za panel nastavakigre kupovina
 
@@ -43,6 +43,8 @@ public class English : MonoBehaviour
     public static string pedeset = "50% fuel";
     public static string sto = "100% fuel";
     public static string Izlaz1 = "Exit";
+
+    public static string distance = "distance passed :";
 
 
 }

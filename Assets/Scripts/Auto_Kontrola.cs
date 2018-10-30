@@ -257,7 +257,7 @@ public class Auto_Kontrola : MonoBehaviour
 
 
         }
-        else if (GLOBALNE.GORIVO == 0)
+        else if (GLOBALNE.GORIVO <= 0)
         {
             if (GLOBALNE.UgasiPanelZaNastavakIgre == true)
             {

@@ -10,6 +10,7 @@ public class PromjenaJezika : MonoBehaviour {
     public Text ControlsButton;
     public Text AboutButton;
     public Text ExitButton;
+    public Text Distance;
 
     public void HrvatskiJezik()
     {
@@ -19,6 +20,7 @@ public class PromjenaJezika : MonoBehaviour {
         ControlsButton.text = Croatian.KontroleButtonText;
         AboutButton.text = Croatian.OIgriButtonText;
         ExitButton.text = Croatian.IzadiIzIgreButtonText;
+        Distance.text = Croatian.prijedenokilometara;
     }
     public void EngleskiJezik()
     {
@@ -28,6 +30,7 @@ public class PromjenaJezika : MonoBehaviour {
         ControlsButton.text = English.ControlsButtonText;
         AboutButton.text = English.AboutButtonText;
         ExitButton.text = English.ExitButtonText;
+        Distance.text = English.distance;
     }
 
 

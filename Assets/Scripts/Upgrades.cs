@@ -10,6 +10,11 @@ public class Upgrades : MonoBehaviour
     public Text Upgrade1;
     public Text Upgrade2;
     public Text Upgrade3;
+    public Text Upp1;
+    public Text Upp2;
+    public Text upp3;
+    public Text naslov;
+    public Text izadi;
     public Text OpisTrenutnogStanja;
     public Button Button1upgrade;
     public Button Button2upgrade;
@@ -38,9 +43,31 @@ public class Upgrades : MonoBehaviour
         temp2 = GLOBALNE.Ubrzanje;
         temp3 = GLOBALNE.Usporavanje;
         brojNovcica = GLOBALNE.BrojSvihNovcica;
+        if (GLOBALNE.EngHrv == true)
+        {
+            OpisTrenutnogStanja.text = "Auto trenutno ide max brzinom od " + GLOBALNE.NajvecaBrzinaAuta * 2
+            + ". Auto ubrzava za " + GLOBALNE.Ubrzanje + " m/s " + "te uporava za -" + GLOBALNE.Usporavanje + " m/s";
 
-        OpisTrenutnogStanja.text = "Auto trenutno ide max brzinom od " + GLOBALNE.NajvecaBrzinaAuta * 2
-        + ". Auto ubrzava za " + GLOBALNE.Ubrzanje + " m/s " + "te uporava za -" + GLOBALNE.Usporavanje + " m/s";
+            Upp1.text = "S ovom nadogradnjom dobit cete vecu dostiznu brzinu auta.";
+            Upp2.text = "S ovom nadogradnjom dobit cete brze ubrzavanje automobila.";
+            upp3.text = "S ovom nadogradnjomdobit cete sporije padanje brzine priliko otpustanja W tipke.";
+
+            naslov.text = "Garaža";
+            izadi.text = "Izađi";
+        }
+        if (GLOBALNE.EngHrv == false)
+        {
+            OpisTrenutnogStanja.text = "Car driving with max speed of  " + GLOBALNE.NajvecaBrzinaAuta * 2
+            + ". Auto accelerating with " + GLOBALNE.Ubrzanje + " m/s " + "and slow down with -" + GLOBALNE.Usporavanje + " m/s";
+
+            Upp1.text = "With tzhis upgrade your car will have bigger max speed.";
+            Upp2.text = "With this upgrade your car will have better acceleration.";
+            upp3.text = "With this upgrade speed of car will go down slower.";
+
+            naslov.text = "Garage";
+            izadi.text = "Exit";
+        }
+
 
         // za upgrade1 maxbrzina
         if (temp1 == 35.0f)
