@@ -21,13 +21,13 @@ public class VelikaPrepreka : MonoBehaviour {
     {
         MeshRenderer m = Prepreka.GetComponent<MeshRenderer>();
         m.enabled = false;
-        if (GLOBALNE.TrenutnaBrzina < 15)
+        if (GLOBALNE.TrenutnaBrzina < 11)
         {
             GLOBALNE.TrenutnaBrzina = 0;
         }
         else
         {
-            GLOBALNE.TrenutnaBrzina -= 15;
+            GLOBALNE.TrenutnaBrzina -= 11;
         }
     }
 

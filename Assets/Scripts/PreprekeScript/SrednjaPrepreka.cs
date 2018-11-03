@@ -21,13 +21,13 @@ public class SrednjaPrepreka : MonoBehaviour {
     {
         MeshRenderer m = Prepreka.GetComponent<MeshRenderer>();
         m.enabled = false;
-        if (GLOBALNE.TrenutnaBrzina < 10)
+        if (GLOBALNE.TrenutnaBrzina < 8)
         {
             GLOBALNE.TrenutnaBrzina = 0;
         }
         else
         {
-            GLOBALNE.TrenutnaBrzina -= 10;
+            GLOBALNE.TrenutnaBrzina -= 8;
         }
     }
 

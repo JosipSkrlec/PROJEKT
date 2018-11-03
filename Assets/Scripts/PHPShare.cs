@@ -9,7 +9,8 @@ public class PHPShare : MonoBehaviour {
     public InputField Ime;
     public Text tekst;
 
-    string pocetnilink = "localhost/phpwithunity/index.php";
+    // TODO - ovaj link zamjeniti sa server linkom te napraviti security (session)
+    string pocetnilink = "localhost/IGRA/NoviRezultat.php";
     string glavnilink = " ";
 
     protected int Prijedenimetri = 0;
@@ -43,7 +44,6 @@ public class PHPShare : MonoBehaviour {
 
         glavnilink = pocetnilink + "?ime=" + "\""+ ImeIgraca + "\"" + "&metri=" + "\"" + Prijedenimetri + "\"";
 
-        Debug.Log(glavnilink);
         WWW www = new WWW(glavnilink);
 
         tekst.text = "Hvala na dijeljenju";

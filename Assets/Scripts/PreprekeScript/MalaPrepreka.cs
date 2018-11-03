@@ -19,7 +19,7 @@ public class MalaPrepreka : MonoBehaviour {
     {
         MeshRenderer m = Prepreka.GetComponent<MeshRenderer>();
         m.enabled = false;
-        if (GLOBALNE.TrenutnaBrzina <5)
+        if (GLOBALNE.TrenutnaBrzina < 5)
         {
             GLOBALNE.TrenutnaBrzina = 0;
         }
