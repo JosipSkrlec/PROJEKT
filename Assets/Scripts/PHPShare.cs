@@ -44,15 +44,21 @@ public class PHPShare : MonoBehaviour {
         string kodd = "D45800HJOSIP19976HHT0PCF41";
         // http://localhost/IGRA/NoviRezultat.php?ime=Nikola&metri=91
 
-        glavnilink = pocetnilink + "?ime=" + ImeIgraca + "&metri=" + Prijedenimetri+"&KOD=" + kodd;
+        glavnilink = pocetnilink + "?ime=" + ImeIgraca + "&metri=" + Prijedenimetri+ "&KOD=" + kodd;
 
-        WWW www = new WWW(glavnilink);
+        StartCoroutine(WaitForRequest());
 
         tekst.text = "Hvala Vam :D";
 
         sharebutton.gameObject.SetActive(false);
         Ime.gameObject.SetActive(false);
 
+    }
+
+    IEnumerator WaitForRequest()
+    {
+        WWW www = new WWW(glavnilink);
+        yield return www;
     }
 
 }
