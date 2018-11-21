@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KontrolaIzmeduScena : MonoBehaviour {
 
-
+    public GameObject Panel;
     // Use this for initialization
     public void PokreniScenu(string name)
     {
@@ -21,6 +21,16 @@ public class KontrolaIzmeduScena : MonoBehaviour {
     public void PrikaziLeaderBoard()
     {
         Application.OpenURL("http://turnisce.000webhostapp.com");
+    }
+
+    public void  ZavrsniPanelShow()
+    {
+        Panel.SetActive(true);
+    }
+
+    public void ZavrsniPanelHide()
+    {
+        Panel.SetActive(false);
     }
 
     /// <summary>

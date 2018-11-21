@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/OIgriScena.unity
+- path: Assets/PocetnaMapa.unity
   isLoaded: 1
   isActive: 1
