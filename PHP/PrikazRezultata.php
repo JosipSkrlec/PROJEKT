@@ -1,9 +1,9 @@
 <?php
 //Variables for the connection
 $servername = "localhost";
-$server_username =  "root";
-$server_password = "";
-$dbName = "proba";
+$server_username =  "id6721306_josip";
+$server_password = "skrlec";
+$dbName = "id6721306_igraautojs";
 
 // Create connection
 $conn = new mysqli($servername, $server_username, $server_password, $dbName);
@@ -12,13 +12,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT ime, metri FROM proba2 ORDER BY metri DESC";
+$sql = "SELECT ime, metri FROM bazaauto ORDER BY metri DESC";
 $result = $conn->query($sql);
 
 echo"<table >
 <tr>
-<th>IME</th>
-<th>PRIJEĐENO</th>
+<th>IME     </th>
+<th>     PRIJEĐENO</th>
 </tr>";
 $brojac =0;
 

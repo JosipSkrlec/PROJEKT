@@ -11,7 +11,7 @@ public class CoinDestroy : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        audioData = GetComponent<AudioSource>();
+        //audioData = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class CoinDestroy : MonoBehaviour {
 
         if (other.gameObject.name == "Auto")
         {
-            audioData.Play();
+            //audioData.Play();
             GLOBALNE.BrojNovcicaTrenutno += 1;
             BrojNovcicaPrikaz.text = GLOBALNE.BrojNovcicaTrenutno.ToString();
 

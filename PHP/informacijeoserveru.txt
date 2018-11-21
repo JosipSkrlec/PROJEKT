@@ -1,0 +1,12 @@
+DATABASE NAME: IGRAAUTOJS   =  id6721306_igraautojs
+DATABASE USERNAME: JOSIP    =  id6721306_josip
+DATABASE PASSWORD: skrlec   =  localhost
+
+
+access:
+
+https://turnisce.000webhostapp.com/index.php
+http://turnisce.000webhostapp.com/
+
+
+

@@ -10,7 +10,8 @@ public class PHPShare : MonoBehaviour {
     public Text tekst;
 
     // TODO - ovaj link zamjeniti sa server linkom te napraviti security (session)
-    string pocetnilink = "localhost/IGRA/NoviRezultat.php";
+    // pocetni link je pomoc kod save data na server. u komentaru denso je link za localhost
+    string pocetnilink = "https://turnisce.000webhostapp.com/NoviRezultat.php"; //localhost/IGRA/NoviRezultat.php 
     string glavnilink = " ";
 
     protected int Prijedenimetri = 0;
@@ -36,17 +37,18 @@ public class PHPShare : MonoBehaviour {
 
 	}
 
-
     public void PHPShareScore()
     {
         Prijedenimetri = GLOBALNE.BrojPrijedenihMetara;
         ImeIgraca = Ime.text;
+        string kodd = "D45800HJOSIP19976HHT0PCF41";
+        // http://localhost/IGRA/NoviRezultat.php?ime=Nikola&metri=91
 
-        glavnilink = pocetnilink + "?ime=" + "\""+ ImeIgraca + "\"" + "&metri=" + "\"" + Prijedenimetri + "\"";
+        glavnilink = pocetnilink + "?ime=" + ImeIgraca + "&metri=" + Prijedenimetri+"&KOD=" + kodd;
 
         WWW www = new WWW(glavnilink);
 
-        tekst.text = "Hvala na dijeljenju";
+        tekst.text = "Hvala Vam :D";
 
         sharebutton.gameObject.SetActive(false);
         Ime.gameObject.SetActive(false);

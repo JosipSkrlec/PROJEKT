@@ -86,6 +86,7 @@ public class SAVE : MonoBehaviour
             }
             catch (Exception e)
             {
+                string a = e.Message;
                 //Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
                 GLOBALNE.NajvecaBrzinaAuta = 15.0f;
                 GLOBALNE.Ubrzanje = 1.0f;
@@ -160,6 +161,7 @@ public class SAVE : MonoBehaviour
             }
             catch (Exception e)
             {
+                string a = e.Message;
                 //Debug.Log("Problem kod load-a UPGRADE, ili nije spremljeno ili se ucitava prvi puta!" + e.Message);
                 GLOBALNE.NajvecaBrzinaAuta = 15.0f;
                 GLOBALNE.Ubrzanje = 1.0f;
@@ -238,6 +240,7 @@ public class SAVE : MonoBehaviour
             catch (Exception e)
             {
                 //Debug.Log("Problem kod load-a BrojaMetara, ili nije spremljeno ili se ucitava prvi puta!" +e.Message);
+                string a = e.Message;
             }
 
         }

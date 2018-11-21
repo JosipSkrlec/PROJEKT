@@ -18,6 +18,11 @@ public class KontrolaIzmeduScena : MonoBehaviour {
         Application.Quit();
     }
 
+    public void PrikaziLeaderBoard()
+    {
+        Application.OpenURL("http://turnisce.000webhostapp.com");
+    }
+
     /// <summary>
     /// Metoda za reset mora biti jer static varijable kod load-anja scene se ne resetiraju !!
     /// </summary>

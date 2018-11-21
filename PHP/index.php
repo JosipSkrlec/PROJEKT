@@ -8,7 +8,7 @@
 
 
   <body>
-    <h1 class="centrirannaslov">Dobrodosli na stranicu!</h1>
+    <h1 class="centrirannaslov">Master of the road</h1>
     <h3 class="centrirannaslov">Igrajte Igru Te budite prvi na listi :D</h3>
     <center>
       <?php include'PrikazRezultata.php' ?>
