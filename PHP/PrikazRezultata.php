@@ -17,8 +17,8 @@ $result = $conn->query($sql);
 
 echo"<table >
 <tr>
-<th>IME     </th>
-<th>     PRIJEĐENO</th>
+<th style='color:#ffffff;font-size:40px'>IME     </th>
+<th style='color:#ffffff;font-size:40px'>     PRIJEĐENO</th>
 </tr>";
 $brojac =0;
 
@@ -26,17 +26,17 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         $brojac ++;
-        if($brojac < 11){
+        if($brojac < 21){
           if($brojac > 3){
-              echo "<tr><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
+              echo "<tr style='color:#ffffff;font-size:40px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
           }
           else if($brojac == 1){
-              echo "<tr style='color:#ff0000;font-size:30px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
+              echo "<tr style='color:#ff0000;font-size:70px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
           }else if($brojac == 2){
-              echo "<tr style='color:#990000;font-size:25px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
+              echo "<tr style='color:#ff3f3f;font-size:60px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
           }
           else if($brojac == 3){
-            echo "<tr style='color:#4d0000;font-size:20px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
+            echo "<tr style='color:#ff8c8c;font-size:50px'><th>" . $row["ime"]. "</th><th>" . $row["metri"]. "</th></tr>";
           }
         }
     }

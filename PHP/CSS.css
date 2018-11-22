@@ -1,5 +1,15 @@
 .centrirannaslov{
   color : black;
   text-align: center;
+  font-size: 50px;
 
+}
+
+body {
+
+  background-image: url("https://turnisce.000webhostapp.com/maxresdefault.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
