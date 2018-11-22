@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/PocetnaMapa.unity
+- path: Assets/GameMapa_01.unity
   isLoaded: 1
   isActive: 1

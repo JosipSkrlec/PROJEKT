@@ -25,6 +25,13 @@ public class Auto_Kontrola : MonoBehaviour
     public RawImage FullTurbo;
     public GameObject Svjetla;
     public GameObject DanNocsvjetlo;
+
+    public AudioClip CoinBadSound;
+    public AudioClip CoindobarSound;
+    public AudioClip GorivoSound;
+    public AudioClip Pjesma;
+    public AudioClip Truba;
+    public AudioClip CrashSound;
     #endregion
 
     #region Ostale Varijable
@@ -54,6 +61,7 @@ public class Auto_Kontrola : MonoBehaviour
     bool SpacejePritisnut = false;
     bool samojednomTurbo = true;
 
+    float trubadelay = 0.0f;
     // za turbotemp
     int TurboTemp1 = 0;
     float TurboTemp2 = 0.0f;
@@ -65,6 +73,8 @@ public class Auto_Kontrola : MonoBehaviour
     float fps = 0.0f;
 
     // Zvuk
+    AudioSource audioData;
+
 
     #endregion
 
@@ -74,6 +84,7 @@ public class Auto_Kontrola : MonoBehaviour
         PanelZaNastavakIgre.SetActive(false);
         FullTurbo.enabled = false;
         Svjetla.SetActive(false);
+        audioData = GetComponent<AudioSource>();
 
         DanNoc();
         // promjena jezika , true i false se seta na pocetnoj (ulaznoj) sceni
@@ -99,6 +110,11 @@ public class Auto_Kontrola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (audioData.isPlaying == false)
+        {
+            audioData.PlayOneShot(Pjesma, 0.20f);
+        }
+
         FPS();
         // provjera brojaca je counter koji odbrojava do 5 sekundi od startup-a jer metoda i kontrole za skretanje se pozivaju u else if kada brojac
         if (provjerabrojacaZaPocetakIgre != 5)
@@ -108,6 +124,15 @@ public class Auto_Kontrola : MonoBehaviour
         // ako je GLOBALNE.GORIVO = 0 tada Auto stane!
         else if (GLOBALNE.GORIVO != 0 && GLOBALNE.NastaviIgrati == true)
         {
+            trubadelay += Time.deltaTime;
+            if (Input.GetKey(KeyCode.H))
+            {
+                if (trubadelay>0.5)
+                {
+                    audioData.PlayOneShot(Truba);
+                    trubadelay = 0.0f;
+                }
+            }
             // if else za skretanje u lijevo i desno A=lijevo, D=desno
             if (GLOBALNE.TrenutnaBrzina > 2 && GLOBALNE.TrenutnaBrzina < 5)
             {
@@ -519,6 +544,23 @@ public class Auto_Kontrola : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.name.Contains("Coin1"))
+        {
+            audioData.PlayOneShot(CoindobarSound);
+        }
+        if (other.name.Contains("CoinBad"))
+        {
+            audioData.PlayOneShot(CoinBadSound);
+        }
+        if (other.name.Contains("Gorivo"))
+        {
+            audioData.PlayOneShot(GorivoSound, 2.0f);
+        }
+        if (other.name.Contains("Kamen") || other.name.Contains("Drvo"))
+        {
+            audioData.PlayOneShot(CrashSound,1.5f);
+        }
+
         if (other.name.Contains("Kaktus") && GLOBALNE.GORIVO > 0 && ZelenoGorivoSlika.transform.localScale.x !=0)
         {
 
