@@ -546,17 +546,17 @@ public class Auto_Kontrola : MonoBehaviour
     {
         if (other.name.Contains("Coin1"))
         {
-            audioData.PlayOneShot(CoindobarSound);
+            audioData.PlayOneShot(CoindobarSound,0.5f);
         }
         if (other.name.Contains("CoinBad"))
         {
-            audioData.PlayOneShot(CoinBadSound);
+            audioData.PlayOneShot(CoinBadSound,0.5f);
         }
         if (other.name.Contains("Gorivo"))
         {
             audioData.PlayOneShot(GorivoSound, 2.0f);
         }
-        if (other.name.Contains("Kamen") || other.name.Contains("Drvo"))
+        if (other.name.Contains("Kamen") || other.name.Contains("Drvo") || other.name.Contains("Stupic") || other.name.Contains("Cunjic"))
         {
             audioData.PlayOneShot(CrashSound,1.5f);
         }
