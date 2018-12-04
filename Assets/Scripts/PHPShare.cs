@@ -48,7 +48,7 @@ public class PHPShare : MonoBehaviour {
 
         StartCoroutine(WaitForRequest());
 
-        tekst.text = "Hvala Vam :D";
+        tekst.text = "Hvala na dijeljenju";
 
         sharebutton.gameObject.SetActive(false);
         Ime.gameObject.SetActive(false);
