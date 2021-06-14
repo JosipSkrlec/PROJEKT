@@ -27,7 +27,7 @@ public class kretanje : MonoBehaviour {
         }
         else
         {
-        Auto.transform.Translate(0.0f, -1.0f * Time.deltaTime, 0.0f);
+        Auto.transform.Translate(0.0f, -1.0f * Time.deltaTime*2, 0.0f);
 
         }
     }
